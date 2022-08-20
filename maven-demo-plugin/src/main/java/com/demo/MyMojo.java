@@ -28,7 +28,9 @@ public class MyMojo
     public void execute()
         throws MojoExecutionException
     {
+        System.out.println("Executing...");
         File f = outputDirectory;
+        System.out.println(outputDirectory);
 
         if ( !f.exists() )
         {
