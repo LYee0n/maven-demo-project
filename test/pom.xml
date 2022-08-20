@@ -82,6 +82,35 @@
         <version>1.0-SNAPSHOT</version>
         <configuration>
           <greeting>Welcome......</greeting>
+          <myBoolean>true</myBoolean>
+          <myInteger>10</myInteger>
+          <myDouble>1.0</myDouble>
+          <myDate>2005-10-06 2:22:55.1 PM</myDate>
+          <myFile>c:\temp</myFile>
+          <myURL>http://maven.apache.org</myURL>
+          <myColor>RED</myColor>
+          <myArray>
+            <param>value1</param>
+            <param>value2</param>
+          </myArray>
+          <myList>
+            <param>value1</param>
+            <param>value2</param>
+          </myList>
+          <myMap>
+            <key1>value1</key1>
+            <key2>value2</key2>
+          </myMap>
+          <myProperties>
+            <property>
+              <name>propertyName1</name>
+              <value>propertyValue1</value>
+            </property>
+            <property>
+              <name>propertyName2</name>
+              <value>propertyValue2</value>
+            </property>
+          </myProperties>
           <goalPrefix>demo</goalPrefix>
         </configuration>
       </plugin>

@@ -11,6 +11,11 @@ import org.apache.maven.plugins.annotations.Parameter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Goal which touches a timestamp file.
@@ -28,6 +33,48 @@ public class MyMojo
     
     @Parameter( property = "sayhi.greeting", defaultValue = "Hello World!" )
     private String greeting;
+    
+    @Parameter
+    private boolean myBoolean;
+    
+    @Parameter
+    private Integer myInteger;
+    
+    @Parameter
+    private Double myDouble;
+    
+    @Parameter
+    private Date myDate;
+    
+    @Parameter
+    private File myFile;
+    
+    @Parameter
+    private URL myURL;
+    
+    public enum Color {
+      GREEN,
+      RED,
+      BLUE
+    }
+ 
+    @Parameter(defaultValue = "GREEN")
+    private Color myColor;
+
+    @Parameter
+    private String[] myArray;
+
+    
+    @Parameter
+    private List myList;
+
+    
+    @Parameter
+    private Map myMap;
+
+    
+    @Parameter
+    private Properties myProperties;
 
     public void execute()
         throws MojoExecutionException
@@ -35,10 +82,17 @@ public class MyMojo
         getLog().info("Executing...");
         getLog().info(outputDirectory.toString());
         getLog().info(greeting);
-        System.out.println("Executing...");
+        getLog().info("myBoolean: " + myBoolean);
+        getLog().info("myInteger: " + myInteger);
+        getLog().info("myDouble: " + myDouble);
+        getLog().info("myDate: " + myDate);
+        getLog().info("myFile: " + myFile);
+        getLog().info("myURL: " + myURL);
+        getLog().info("myColor: " + myColor);
+        getLog().info("myArray: " + myArray);
+        getLog().info("myMap: " + myMap);
+        getLog().info("myProperties: " + myProperties);
         File f = outputDirectory;
-        System.out.println(outputDirectory);
-        System.out.println(greeting);
 
         if ( !f.exists() )
         {
