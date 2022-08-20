@@ -78,8 +78,11 @@
     <plugins>
       <plugin>
         <groupId>com.demo</groupId>
-        <artifactId>plugin</artifactId>
+        <artifactId>maven-demo-plugin</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <configuration>
+          <goalPrefix>demo</goalPrefix>
+        </configuration>
       </plugin>
     </plugins>
   </build>
