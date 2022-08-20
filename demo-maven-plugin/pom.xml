@@ -8,11 +8,11 @@
   </parent>
 
   <groupId>com.demo</groupId>
-  <artifactId>maven-demo-plugin</artifactId>
+  <artifactId>demo-maven-plugin</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
-  <name>maven-demo-plugin Maven Plugin</name>
+  <name>demo-maven-plugin Maven Plugin</name>
 
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>

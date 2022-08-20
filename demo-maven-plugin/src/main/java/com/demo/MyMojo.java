@@ -28,6 +28,8 @@ public class MyMojo
     public void execute()
         throws MojoExecutionException
     {
+        getLog().info("Executing...");
+        getLog().info(outputDirectory.toString());
         System.out.println("Executing...");
         File f = outputDirectory;
         System.out.println(outputDirectory);

@@ -4,7 +4,7 @@
 ```
 mvn archetype:generate \
   -DgroupId=com.demo \
-  -DartifactId=maven-demo-plugin \
+  -DartifactId=demo-maven-plugin \
   -DarchetypeGroupId=org.apache.maven.archetypes \
   -DarchetypeArtifactId=maven-archetype-plugin
 ```
