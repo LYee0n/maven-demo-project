@@ -25,14 +25,20 @@ public class MyMojo
     @Parameter( defaultValue = "${project.build.directory}", property = "outputDir", required = true )
     private File outputDirectory;
 
+    
+    @Parameter( property = "sayhi.greeting", defaultValue = "Hello World!" )
+    private String greeting;
+
     public void execute()
         throws MojoExecutionException
     {
         getLog().info("Executing...");
         getLog().info(outputDirectory.toString());
+        getLog().info(greeting);
         System.out.println("Executing...");
         File f = outputDirectory;
         System.out.println(outputDirectory);
+        System.out.println(greeting);
 
         if ( !f.exists() )
         {
