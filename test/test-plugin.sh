@@ -1,0 +1,1 @@
+mvn com.demo:plugin:1.0-SNAPSHOT:sayhi
