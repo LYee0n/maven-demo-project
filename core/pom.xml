@@ -19,9 +19,30 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <jooq.version>3.12.3</jooq.version>
   </properties>
 
   <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>42.5.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>8.0.18</version>
+    </dependency>
+
+    <!-- base jooq dependency -->
+    <dependency>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq</artifactId>
+        <version>${jooq.version}</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -31,6 +52,40 @@
   </dependencies>
 
   <build>
+    <plugins>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
+
+        <!-- 代码生成器插件 -->
+        <plugin>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq-codegen-maven</artifactId>
+            <version>${jooq.version}</version>
+            <configuration>
+                <jdbc>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://127.0.0.1:5432/postgres</url>
+                    <user>postgres</user>
+                    <password>postgres</password>
+                </jdbc>
+                <generator>
+                    <database>
+                        <includes>.*</includes>
+                        <inputSchema>public</inputSchema>
+                    </database>
+                    <target>
+                        <packageName>com.demo.codegen</packageName>
+                        <directory>./src/main/java</directory>
+                    </target>
+                </generator>
+            </configuration>
+        </plugin>
+    </plugins>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->

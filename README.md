@@ -8,3 +8,11 @@ mvn archetype:generate \
   -DarchetypeGroupId=org.apache.maven.archetypes \
   -DarchetypeArtifactId=maven-archetype-plugin
 ```
+
+```
+docker compose up -d
+```
+
+```
+mvn jooq-codegen:generate
+```
