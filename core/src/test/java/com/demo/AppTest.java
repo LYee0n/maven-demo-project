@@ -85,18 +85,23 @@ public class AppTest
         try (Connection conn = DriverManager.getConnection(url, userName, password)) {
             DSLContext create = DSL.using(conn, SQLDialect.POSTGRES);
 
-            create.deleteFrom(ACCOUNT)
-            .where(ACCOUNT.NAME.eq("asd"))
-            .execute();
-            create.deleteFrom(ACCOUNT)
-            .where(ACCOUNT.NAME.eq("bas"))
-            .execute();
+            System.out.println(
+                create.deleteFrom(ACCOUNT)
+                .where(ACCOUNT.NAME.eq("asd"))
+                .execute()
+                );
+            System.out.println(
+                create.deleteFrom(ACCOUNT)
+                .where(ACCOUNT.NAME.eq("bas"))
+                .execute()
+                );
 
 
-            create.insertInto(ACCOUNT, ACCOUNT.NAME,ACCOUNT.PASSWORD,ACCOUNT.EMAIL)
-            .values("asd","asd","asd")
-            .values("bas","bas","asd")
-            .execute();
+            System.out.println(
+                create.insertInto(ACCOUNT, ACCOUNT.NAME,ACCOUNT.PASSWORD,ACCOUNT.EMAIL)
+                .values("asd","asd","asd")
+                .values("bas","bas","asd")
+                .execute());
 
             Result<org.jooq.Record> result = create.select().from(ACCOUNT).fetch();
 
