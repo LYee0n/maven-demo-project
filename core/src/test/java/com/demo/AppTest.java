@@ -5,9 +5,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import static org.jooq.impl.DSL.*;
+import static org.jooq.SQLDialect.*;
 import static com.demo.codegen.Tables.*;
 import org.jooq.*;
 import org.jooq.impl.*;
+import java.sql.DriverManager;
+import java.sql.Connection;
 
 /**
  * Unit test for simple App. https://www.jooq.org/javadoc/dev/org.jooq/org/jooq/impl/DSL.html
@@ -66,6 +69,28 @@ public class AppTest
             deleteFrom(ACCOUNT)
             .where(ACCOUNT.ID.eq("aaa"))
             );
+
+        assertTrue( true );
+    }
+    
+    @Test
+    public void jooqDemo()
+    {
+        String userName = "postgres";
+        String password = "postgres";
+        String url = "jdbc:postgresql://127.0.0.1:5432/postgres";
+
+        // Connection is the only JDBC resource that we need
+        // PreparedStatement and ResultSet are handled by jOOQ, internally
+        try (Connection conn = DriverManager.getConnection(url, userName, password)) {
+            DSLContext create = DSL.using(conn, SQLDialect.POSTGRES);
+            Result<org.jooq.Record> result = create.select().from(ACCOUNT).fetch();
+        } 
+
+        // For the sake of this tutorial, let's keep exception handling simple
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
         assertTrue( true );
     }
