@@ -104,7 +104,16 @@ public class AppTest
                 .execute());
 
             Result<org.jooq.Record> result = create.select().from(ACCOUNT).fetch();
+            
+            
+            String json = create.selectFrom(ACCOUNT).fetch().formatJSON();
 
+            // ObjectMapper objectMapper = new ObjectMapper();
+            // String json = objectMapper.writeValueAsString(result);
+
+            System.out.println(json);
+
+            // https://www.jooq.org/doc/3.10/manual/sql-execution/fetching/pojos/
             
             for (org.jooq.Record r : result) {
                 Object id = r.getValue(ACCOUNT.ID);
