@@ -84,7 +84,28 @@ public class AppTest
         // PreparedStatement and ResultSet are handled by jOOQ, internally
         try (Connection conn = DriverManager.getConnection(url, userName, password)) {
             DSLContext create = DSL.using(conn, SQLDialect.POSTGRES);
+
+            create.deleteFrom(ACCOUNT)
+            .where(ACCOUNT.NAME.eq("asd"))
+            .execute();
+            create.deleteFrom(ACCOUNT)
+            .where(ACCOUNT.NAME.eq("bas"))
+            .execute();
+
+
+            create.insertInto(ACCOUNT, ACCOUNT.NAME,ACCOUNT.PASSWORD,ACCOUNT.EMAIL)
+            .values("asd","asd","asd")
+            .values("bas","bas","asd")
+            .execute();
+
             Result<org.jooq.Record> result = create.select().from(ACCOUNT).fetch();
+
+            
+            for (org.jooq.Record r : result) {
+                Object id = r.getValue(ACCOUNT.ID);
+
+                System.out.println("ID: " + id );
+            }
         } 
 
         // For the sake of this tutorial, let's keep exception handling simple
