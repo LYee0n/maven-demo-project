@@ -11,6 +11,9 @@ import org.jooq.*;
 import org.jooq.impl.*;
 import java.sql.DriverManager;
 import java.sql.Connection;
+import org.snakeyaml.engine.v2.api.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Unit test for simple App. https://www.jooq.org/javadoc/dev/org.jooq/org/jooq/impl/DSL.html
@@ -129,4 +132,23 @@ public class AppTest
 
         assertTrue( true );
     }
+    
+    @Test
+    public void yamlDemo()
+    {
+        LoadSettings settings = LoadSettings.builder().build();
+        Load load = new Load(settings); 
+        Map<String, Object> map = (Map<String, Object>) load.loadFromString("a: 1\nb: 2\nc:\n  - aaa\n  - bbb");
+        System.out.println(map);
+
+                
+        DumpSettings settings2 = DumpSettings.builder().build();
+        Dump dump = new Dump(settings2);
+        String output = dump.dumpToString(map);
+        System.out.println(output);
+
+
+        assertTrue( true );
+    }
+    
 }
