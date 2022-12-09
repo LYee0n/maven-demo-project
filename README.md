@@ -16,3 +16,8 @@ docker compose up -d
 ```
 mvn jooq-codegen:generate
 ```
+
+```
+mvn demo:touch
+mvn demo:touch -Dsayhi.greeting=?
+```

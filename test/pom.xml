@@ -81,7 +81,7 @@
         <artifactId>demo-maven-plugin</artifactId>
         <version>1.0-SNAPSHOT</version>
         <configuration>
-          <greeting>Welcome......</greeting>
+          <!-- <greeting>Welcome......</greeting> -->
           <myBoolean>true</myBoolean>
           <myInteger>10</myInteger>
           <myDouble>1.0</myDouble>
