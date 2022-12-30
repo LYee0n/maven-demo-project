@@ -1,0 +1,16 @@
+---
+- name: Process List of Patches 
+  hosts: localhost
+  vars: 
+    patch_list: []
+    config:
+      a: [0,4,8]
+      b:
+        c: c
+        d: d
+
+  tasks:
+    - name: Template a file to file.conf
+      ansible.builtin.template:
+        src: test.j2
+        dest: /home/codespace/file.conf
