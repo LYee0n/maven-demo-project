@@ -58,3 +58,25 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
 sudo service docker start
+
+
+# Add Storybook:
+npx storybook init
+
+npm run storybook
+
+
+
+1. Install the Budibase CLI:
+
+npm i -g @budibase/cli
+
+2. Setup Budibase (select where to store Budibase, and the port to run it on):
+
+budi hosting --init
+
+3. Run Budibase:
+
+budi hosting --start
+
+4. Create your admin user by entering the email and password for the new admin user.
