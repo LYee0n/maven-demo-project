@@ -14,3 +14,14 @@
       ansible.builtin.template:
         src: test.j2
         dest: /home/codespace/file.conf
+
+    - name: Tear down existing services
+      community.docker.docker_compose:
+        project_src: /workspaces/maven-demo-project
+        state: absent
+
+        
+    - name: Tear up existing services
+      community.docker.docker_compose:
+        project_src: /workspaces/maven-demo-project
+        state: present 
