@@ -6,14 +6,22 @@
     config:
       a: [0,4,8]
       b:
-        c: c
-        d: d
+        c: "c"
+        d: 
+          - e : a b c d e
+          - e : a b c d e 2
+          - e : a b c d e 3
 
   tasks:
     - name: Template a file to file.conf
       ansible.builtin.template:
         src: test.j2
-        dest: /home/codespace/file.conf
+        dest: /workspaces/maven-demo-project/file.conf
+    - name: Template a file to file.conf
+
+      ansible.builtin.template:
+        src: test2.j2
+        dest: /workspaces/maven-demo-project/file2.conf
 
     - name: Tear down existing services
       community.docker.docker_compose:
