@@ -95,3 +95,7 @@ curl https://api.openai.com/v1/models \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer YOUR_API_KEY" \
 -d '{"model": "text-davinci-003", "prompt": "Say this is a test", "temperature": 0, "max_tokens": 7}'
+
+
+
+curl -s https://api.openai.com/v1/completions -H "Content-Type: application/json" -H "Authorization: Bearer YOUR_API_KEY" -d '{"model": "text-davinci-003", "prompt": "what about object storage vs file system vs ftp", "temperature": 0, "max_tokens": 100}' | jq .choices
