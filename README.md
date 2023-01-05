@@ -80,3 +80,18 @@ budi hosting --init
 budi hosting --start
 
 4. Create your admin user by entering the email and password for the new admin user.
+
+
+## chatGPT
+
+
+https://beta.openai.com/docs/api-reference/introduction
+
+curl https://api.openai.com/v1/models \
+  -H 'Authorization: Bearer YOUR_API_KEY' \
+  -H 'OpenAI-Organization: org-F3dDuF3Xo4CqWqVxBXC4Nq3i'
+
+  curl https://api.openai.com/v1/completions \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer YOUR_API_KEY" \
+-d '{"model": "text-davinci-003", "prompt": "Say this is a test", "temperature": 0, "max_tokens": 7}'
