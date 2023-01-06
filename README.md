@@ -99,3 +99,12 @@ curl https://api.openai.com/v1/models \
 
 
 curl -s https://api.openai.com/v1/completions -H "Content-Type: application/json" -H "Authorization: Bearer YOUR_API_KEY" -d '{"model": "text-davinci-003", "prompt": "what about object storage vs file system vs ftp", "temperature": 0, "max_tokens": 100}' | jq .choices
+
+
+
+ansible-vault create vault
+ansible-vault edit vault
+
+ansible-playbook  site.yml
+
+ ansible-playbook playbook.yaml -i hosts --vault-password-file .vault_passwd
