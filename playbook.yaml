@@ -1,6 +1,6 @@
 ---
 - name: Process List of Patches 
-  hosts: localhost
+  hosts: server
   vars: 
     patch_list: []
     config:
@@ -13,6 +13,10 @@
           - e : a b c d e 3
 
   tasks:
+    - name: Print 
+      ansible.builtin.debug:
+        msg: user {{ POSTGRES_USERNAME }} password {{ POSTGRES_PASSWORD }}
+
     - name: Template a file to file.conf
       ansible.builtin.template:
         src: test.j2
