@@ -102,6 +102,11 @@ curl -s https://api.openai.com/v1/completions -H "Content-Type: application/json
 
 
 
+https://ithelp.ithome.com.tw/articles/10207246
+https://www.digitalocean.com/community/tutorials/how-to-use-vault-to-protect-sensitive-ansible-data
+https://www.51cto.com/article/708612.html
+https://www.junmajinlong.com/ansible/12_safer_ansible/
+
 ansible-vault create vault
 ansible-vault edit vault
 
