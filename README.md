@@ -112,8 +112,10 @@ ansible-vault edit vault
 
 ansible-playbook  site.yml
 
- ansible-playbook playbook.yaml -i hosts --vault-password-file .vault_passwd
+ ansible-playbook playbook.yaml -i inventories/production/hosts --vault-password-file .vault_passwd
 
+ ansible-playbook playbook.yaml -i inventories/test/hosts --vault-password-file .vault_passwd
+ 
 ## sqlite
 
  sqlite3 testDB.db < testDB.sql

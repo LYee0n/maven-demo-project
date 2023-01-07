@@ -1,0 +1,26 @@
+POSTGRES_USERNAME: postgres
+
+docker_compose:
+  version: '3.1'
+  services:
+    main-db:
+      image: postgres
+      restart: always
+      environment:
+        POSTGRES_PASSWORD: postgres
+        POSTGRES_USERNAME: postgres
+      volumes:
+        - main-db-data:/var/lib/postgresql/data
+        - ./ddl.sql:/docker-entrypoint-initdb.d/init.sql
+      ports:
+        - 5432:5432
+    gitlab-runner:
+      image: gitlab/gitlab-runner:latest
+      container_name: "gitlab_runner"
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ./config:/etc/gitlab-runner
+        - /cache:/cache
+      restart: always
+  volumes:
+    main-db-data:
