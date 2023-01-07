@@ -115,7 +115,51 @@ ansible-playbook  site.yml
  ansible-playbook playbook.yaml -i inventories/production/hosts --vault-password-file .vault_passwd
 
  ansible-playbook playbook.yaml -i inventories/test/hosts --vault-password-file .vault_passwd
- 
+
 ## sqlite
 
  sqlite3 testDB.db < testDB.sql
+
+## terraform
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
+
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+    gpg --dearmor | \
+    sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
+
+gpg --no-default-keyring \
+    --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+    --fingerprint
+
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+    https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+    sudo tee /etc/apt/sources.list.d/hashicorp.list
+
+    sudo apt-get install terraform
+
+    terraform -help
+
+    wget https://releases.hashicorp.com/terraform-provider-aws/4.49.0/terraform-provider-aws_4.49.0_linux_amd64.zip
+
+    
+unzip terraform-provider-aws_4.49.0_linux_amd64.zip
+mkdir -p ~/.terraform.d/plugins/linux_amd64/
+mv terraform-provider-aws_v4.49.0_x5 ~/.terraform.d/plugins/linux_amd64/
+
+
+
+export PROVIDER={all,google,aws,kubernetes}
+
+export PROVIDER=aws
+curl -LO https://github.com/GoogleCloudPlatform/terraformer/releases/download/$(curl -s https://api.github.com/repos/GoogleCloudPlatform/terraformer/releases/latest | grep tag_name | cut -d '"' -f 4)/terraformer-${PROVIDER}-linux-amd64
+chmod +x terraformer-${PROVIDER}-linux-amd64
+sudo mv terraformer-${PROVIDER}-linux-amd64 /usr/local/bin/terraformer
+
+ terraformer import aws --regions=us-west-2 --resources=vpc,subnet
+
+  --filter=vpc=myvpcid 
