@@ -1,6 +1,8 @@
 ---
 - name: Process List of Patches 
   hosts: server
+  roles:
+    - common
   vars: 
     patch_list: []
     config:

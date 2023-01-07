@@ -1,0 +1,4 @@
+
+- name: common role Print 
+  ansible.builtin.debug:
+    msg: hello here is {{ role }}
