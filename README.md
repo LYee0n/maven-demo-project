@@ -160,6 +160,11 @@ curl -LO https://github.com/GoogleCloudPlatform/terraformer/releases/download/$(
 chmod +x terraformer-${PROVIDER}-linux-amd64
 sudo mv terraformer-${PROVIDER}-linux-amd64 /usr/local/bin/terraformer
 
- terraformer import aws --regions=us-west-2 --resources=vpc,subnet
+  terraformer import aws list
+
+
+ terraformer import aws --regions=us-west-2 --resources=accessanalyzer,acm,alb,api_gateway,appsync,auto_scaling,batch,budgets,cloud9,cloudformation,cloudfront,cloudhsm,cloudtrail,cloudwatch,codebuild,codecommit,codedeploy,codepipeline,cognito,config,customer_gateway,datapipeline,devicefarm,docdb,dynamodb,ebs,ec2_instance,ecr,ecrpublic,ecs,efs,eip,eks,elastic_beanstalk,elasticache,elb,emr,eni,es,firehose,glue,iam,igw,iot,kinesis,kms,lambda,logs,media_package,media_store,msk,nacl,nat,opsworks,organization,qldb,rds,redshift,resourcegroups,route53,route_table,s3,secretsmanager,securityhub,servicecatalog,ses,sfn,sg,sns,sqs,ssm,subnet,swf,transit_gateway,vpc,vpc_peering,vpn_connection,vpn_gateway,waf,waf_regional,wafv2_cloudfront,wafv2_regional,workspaces,xray
+
+ terraformer import aws --regions=us-west-2 --resources=s3
 
   --filter=vpc=myvpcid 
