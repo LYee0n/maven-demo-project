@@ -17,6 +17,10 @@
   tasks:
     - name: Print 
       ansible.builtin.debug:
+        msg: GLOBAL_VAR {{ GLOBAL_VAR }} 
+
+    - name: Print 
+      ansible.builtin.debug:
         msg: host var {{ host_var }} user {{ POSTGRES_USERNAME }} password {{ POSTGRES_PASSWORD }}
 
     - name: Template a file to file.conf
