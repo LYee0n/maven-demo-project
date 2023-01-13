@@ -168,3 +168,21 @@ sudo mv terraformer-${PROVIDER}-linux-amd64 /usr/local/bin/terraformer
  terraformer import aws --regions=us-west-2 --resources=s3
 
   --filter=vpc=myvpcid 
+
+
+flock /tmp/demo.lock sleep 10 && date
+
+
+
+https://galaxy.ansible.com/community/kubernetes
+https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/
+https://faun.pub/how-to-create-your-own-kubernetes-cluster-using-ansible-7c6b5c031a5d
+https://buildvirtual.net/deploy-a-kubernetes-cluster-using-ansible/
+https://ithelp.ithome.com.tw/articles/10205550
+
+
+https://fly.io/docs/languages-and-frameworks/golang/
+
+https://render.com/
+
+https://dashboard.render.com/
