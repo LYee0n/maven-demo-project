@@ -200,3 +200,10 @@ https://developer.hashicorp.com/vagrant/downloads
  sudo apt update && sudo apt install vagrant
 
  sudo apt install virtualbox
+
+
+
+https://github.com/openjdk/jmh
+https://dafengge0913.github.io/jmh/
+https://hezhiqiang8909.gitbook.io/java/docs/javalib/jmh
+https://www.baeldung.com/java-microbenchmark-harness
