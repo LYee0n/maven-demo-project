@@ -1,8 +1,8 @@
 create database demo;
 
-CREATE USER test WITH PASSWORD 'test'; VALID UNTIL '3000-01-01';
-CREATE USER test2 WITH PASSWORD 'test2'; VALID UNTIL '3000-01-01';
-CREATE USER test3 WITH PASSWORD 'test3'; VALID UNTIL '3000-01-01';
+CREATE USER test WITH PASSWORD 'test' VALID UNTIL '3000-01-01';
+CREATE USER test2 WITH PASSWORD 'test2' VALID UNTIL '3000-01-01';
+CREATE USER test3 WITH PASSWORD 'test3' VALID UNTIL '3000-01-01';
 
 GRANT ALL PRIVILEGES ON DATABASE demo TO test;
 
@@ -14,7 +14,7 @@ CREATE SCHEMA AUTHORIZATION test3;
 CREATE SCHEMA IF NOT EXISTS demo1 AUTHORIZATION test;
     CREATE TABLE demo1.films (title text, release date, awards text[]);
     CREATE VIEW demo1.winners AS
-        SELECT title, release FROM films WHERE awards IS NOT NULL;
+        SELECT title, release FROM demo1.films WHERE awards IS NOT NULL;
 
 
 
@@ -27,7 +27,8 @@ CREATE SCHEMA demo2
 CREATE SCHEMA demo3;
     CREATE TABLE demo3.films3 (title text, release date, awards text[]);
     CREATE VIEW demo3.winners3 AS
-        SELECT title, release FROM films3 WHERE awards IS NOT NULL;
+        SELECT title, release FROM demo3.films3 WHERE awards IS NOT NULL;
+
 
 
 
@@ -37,7 +38,9 @@ ALTER SCHEMA demo3 OWNER TO test3;
 ALTER TABLE demo3.films3 OWNER TO test3;
 ALTER TABLE demo3.winners3 OWNER TO test3;
 
-
+ALTER USER test set SEARCH_PATH = 'demo1';
+ALTER USER test2 set SEARCH_PATH = 'demo2';
+ALTER USER test3 set SEARCH_PATH = 'demo3';
 
 -- public.account definition
 
