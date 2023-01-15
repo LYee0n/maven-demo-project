@@ -1,3 +1,44 @@
+create database demo;
+
+CREATE USER test WITH PASSWORD 'test'; VALID UNTIL '3000-01-01';
+CREATE USER test2 WITH PASSWORD 'test2'; VALID UNTIL '3000-01-01';
+CREATE USER test3 WITH PASSWORD 'test3'; VALID UNTIL '3000-01-01';
+
+GRANT ALL PRIVILEGES ON DATABASE demo TO test;
+
+CREATE SCHEMA AUTHORIZATION test;
+CREATE SCHEMA AUTHORIZATION test2;
+CREATE SCHEMA AUTHORIZATION test3;
+
+
+CREATE SCHEMA IF NOT EXISTS demo1 AUTHORIZATION test;
+    CREATE TABLE demo1.films (title text, release date, awards text[]);
+    CREATE VIEW demo1.winners AS
+        SELECT title, release FROM films WHERE awards IS NOT NULL;
+
+
+
+CREATE SCHEMA demo2
+    CREATE TABLE films2 (title text, release date, awards text[])
+    CREATE VIEW winners2 AS
+        SELECT title, release FROM films2 WHERE awards IS NOT NULL;
+
+
+CREATE SCHEMA demo3;
+    CREATE TABLE demo3.films3 (title text, release date, awards text[]);
+    CREATE VIEW demo3.winners3 AS
+        SELECT title, release FROM films3 WHERE awards IS NOT NULL;
+
+
+
+
+ALTER SCHEMA demo3 OWNER TO test3;
+
+ALTER TABLE demo3.films3 OWNER TO test3;
+ALTER TABLE demo3.winners3 OWNER TO test3;
+
+
+
 -- public.account definition
 
 -- Drop table
@@ -93,3 +134,5 @@ CREATE TABLE public.task (
 	CONSTRAINT task_dest_ftp_server_fk FOREIGN KEY (dest_ftp_server_id) REFERENCES public.ftp_server(id),
 	CONSTRAINT task_origin_ftp_server_fk FOREIGN KEY (origin_ftp_server_id) REFERENCES public.ftp_server(id)
 );
+
+
