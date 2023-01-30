@@ -207,3 +207,17 @@ https://github.com/openjdk/jmh
 https://dafengge0913.github.io/jmh/
 https://hezhiqiang8909.gitbook.io/java/docs/javalib/jmh
 https://www.baeldung.com/java-microbenchmark-harness
+
+https://cftang0827.medium.com/%E4%BD%BF%E7%94%A8%E8%87%AA%E5%BB%BAnexus-server%E4%BD%9C%E7%82%BAnpm%E7%9A%84registry-%E5%80%89%E5%BA%AB-e48327d47309
+
+
+```
+## username:password
+echo -n 'admin:admin123' | openssl base64 # YWRtaW46YWRtaW4xMjM=
+```
+
+```
+email=you@example.com
+always-auth=true
+_auth=YWRtaW46YWRtaW4xMjM=
+```
