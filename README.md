@@ -221,3 +221,10 @@ email=you@example.com
 always-auth=true
 _auth=YWRtaW46YWRtaW4xMjM=
 ```
+
+wp-config.php
+```php
+define('WP_HOME','http://yoursitename.com');
+
+define('WP_SITEURL','http://yoursitename.com');
+```
