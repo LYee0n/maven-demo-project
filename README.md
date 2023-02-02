@@ -232,3 +232,5 @@ define('WP_SITEURL','http://yoursitename.com');
 
 https://developer.wordpress.org/rest-api/using-the-rest-api/
 https://wordpress.com/learn/
+
+https://www.digitalocean.com/community/tutorials/how-to-install-drupal-with-docker-compose
