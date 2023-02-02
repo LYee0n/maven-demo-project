@@ -228,3 +228,7 @@ define('WP_HOME','http://yoursitename.com');
 
 define('WP_SITEURL','http://yoursitename.com');
 ```
+
+
+https://developer.wordpress.org/rest-api/using-the-rest-api/
+https://wordpress.com/learn/
