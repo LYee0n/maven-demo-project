@@ -268,3 +268,11 @@ values (
 
 ./liquibase --diffTypes=tables,columns,data --changelog-file=myChangelog.xml generate-changelog
 ./liquibase --diffTypes=tables,columns,data --dataOutputDirectory=myData --changelog-file=output_changelog.xml generate-changelog
+
+./liquibase --url=jdbc:postgresql://localhost:5432/postgres?currentSchema=liquibase_source --username=postgres --password=postgres --referenceUrl=jdbc:postgresql://localhost:5432/postgres?currentSchema=liquibase_target --referenceUsername=postgres --referencePassword=postgres diffChangeLog
+
+./liquibase --url=jdbc:postgresql://localhost:5432/postgres?currentSchema=liquibase_source --username=postgres --password=postgres --referenceUrl=jdbc:postgresql://localhost:5432/postgres?currentSchema=liquibase_target --referenceUsername=postgres --referencePassword=postgres --changeLogFile=data_inserts.xml diffChangeLog
+
+
+
+liquibase.command.url=jdbc:postgresql://localhost:5432/postgres?currentSchema=liquibase_target
