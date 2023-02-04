@@ -247,4 +247,24 @@ psql
 \dn
 SET search_path TO liquibase_source;
 \d account
+SET search_path TO liquibase_target;
+\d account
 ```
+
+insert into "account" (
+  "name", 
+  "password",
+  "email"
+)
+values (
+  'asd', 
+  'asd', 
+  'asd1'
+), (
+  'bas', 
+  'bas', 
+  'asd1'
+);
+
+./liquibase --diffTypes=tables,columns,data --changelog-file=myChangelog.xml generate-changelog
+./liquibase --diffTypes=tables,columns,data --dataOutputDirectory=myData --changelog-file=output_changelog.xml generate-changelog

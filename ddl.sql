@@ -157,6 +157,20 @@ CREATE TABLE liquibase_source.account (
 	CONSTRAINT account_un UNIQUE (name)
 );
 
+insert into "liquibase_source"."account" (
+  "name", 
+  "password",
+  "email"
+)
+values (
+  'asd', 
+  'asd', 
+  'asd1'
+), (
+  'bas', 
+  'bas', 
+  'asd1'
+);
 
 CREATE TABLE liquibase_target.account (
 	id varchar NOT NULL DEFAULT gen_random_uuid(),
@@ -168,4 +182,19 @@ CREATE TABLE liquibase_target.account (
 	status varchar NOT NULL DEFAULT 'Y'::character varying,
 	CONSTRAINT account_pk PRIMARY KEY (id),
 	CONSTRAINT account_un UNIQUE (name)
+);
+
+insert into "liquibase_target"."account" (
+  "name", 
+  "password",
+  "email"
+)
+values (
+  'asd', 
+  'asd', 
+  'asd1'
+), (
+  'bas', 
+  'bas', 
+  'asd1'
 );
