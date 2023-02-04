@@ -234,3 +234,17 @@ https://developer.wordpress.org/rest-api/using-the-rest-api/
 https://wordpress.com/learn/
 
 https://www.digitalocean.com/community/tutorials/how-to-install-drupal-with-docker-compose
+
+```
+wget https://github.com/liquibase/liquibase/releases/download/v4.19.0/liquibase-4.19.0.tar.gz
+tar -xvf liquibase-4.19.0.tar.gz 
+```
+
+```
+docker exec -it maven-demo-project-main-db-1 bash
+sudo postgres
+psql
+\dn
+SET search_path TO liquibase_source;
+\d account
+```

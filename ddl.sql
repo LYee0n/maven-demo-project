@@ -139,3 +139,33 @@ CREATE TABLE public.task (
 );
 
 
+
+
+CREATE SCHEMA liquibase_source;
+CREATE SCHEMA liquibase_target;
+
+
+CREATE TABLE liquibase_source.account (
+	id varchar NOT NULL DEFAULT gen_random_uuid(),
+	"name" varchar NOT NULL,
+	"password" varchar NOT NULL,
+	email varchar NOT NULL,
+	create_time timestamp NOT NULL DEFAULT now(),
+	webhook_endpoint varchar NULL,
+	status varchar NOT NULL DEFAULT 'Y'::character varying,
+	CONSTRAINT account_pk PRIMARY KEY (id),
+	CONSTRAINT account_un UNIQUE (name)
+);
+
+
+CREATE TABLE liquibase_target.account (
+	id varchar NOT NULL DEFAULT gen_random_uuid(),
+	"name" varchar NOT NULL,
+	"password" varchar NOT NULL,
+	email varchar NOT NULL,
+	create_time timestamp NOT NULL DEFAULT now(),
+	webhook_endpoint varchar NULL,
+	status varchar NOT NULL DEFAULT 'Y'::character varying,
+	CONSTRAINT account_pk PRIMARY KEY (id),
+	CONSTRAINT account_un UNIQUE (name)
+);
