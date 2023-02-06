@@ -280,3 +280,5 @@ liquibase.command.url=jdbc:postgresql://localhost:5432/postgres?currentSchema=li
 wget https://get.helm.sh/helm-v3.11.0-linux-amd64.tar.gz
 tar -xvf helm-v3.11.0-linux-amd64.tar.gz 
 sudo ln -s ./linux-amd64/helm /usr/bin/helm
+
+https://cwhu.medium.com/kubernetes-helm-chart-tutorial-fbdad62a8b61
