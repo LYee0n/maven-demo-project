@@ -276,3 +276,7 @@ values (
 
 
 liquibase.command.url=jdbc:postgresql://localhost:5432/postgres?currentSchema=liquibase_target
+
+wget https://get.helm.sh/helm-v3.11.0-linux-amd64.tar.gz
+tar -xvf helm-v3.11.0-linux-amd64.tar.gz 
+sudo ln -s ./linux-amd64/helm /usr/bin/helm
