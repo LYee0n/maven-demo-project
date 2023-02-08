@@ -12,6 +12,7 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 
 import java.util.concurrent.TimeUnit;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.sql.*;
 
 
@@ -71,6 +72,54 @@ public class AppTest
             try {
                 if (pstmt != null) {
                     pstmt.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        assertTrue( true );
+    }
+
+    @Test
+    public void getFileFromTable() throws RunnerException {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            // Establish a connection to the database
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "postgres");
+
+            // Execute the SELECT statement
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery("SELECT file_data FROM files WHERE id = 1");
+            
+            if (rs.next()) {
+                // Get the file data from the result set
+                byte[] fileBytes = rs.getBytes("file_data");
+                
+                // Write the file data to a local file
+                FileOutputStream outputStream = new FileOutputStream("example_retrieved.file");
+                outputStream.write(fileBytes);
+                outputStream.close();
+                
+                System.out.println("File retrieved from database and saved successfully!");
+            } else {
+                System.out.println("No file found with id 1 in the database.");
+            }
+        } catch (SQLException | ClassNotFoundException | java.io.IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
                 }
                 if (conn != null) {
                     conn.close();
