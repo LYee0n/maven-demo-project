@@ -282,3 +282,7 @@ tar -xvf helm-v3.11.0-linux-amd64.tar.gz
 sudo ln -s ./linux-amd64/helm /usr/bin/helm
 
 https://cwhu.medium.com/kubernetes-helm-chart-tutorial-fbdad62a8b61
+
+dd if=/dev/zero of=100MB.test bs=1MB count=100
+
+dd if=/dev/zero of=100MB.test bs=1MB count=2
