@@ -138,6 +138,11 @@ CREATE TABLE public.task (
 	CONSTRAINT task_origin_ftp_server_fk FOREIGN KEY (origin_ftp_server_id) REFERENCES public.ftp_server(id)
 );
 
+CREATE TABLE public.files (
+  id SERIAL PRIMARY KEY,
+  file_data BYTEA
+);
+
 
 
 
