@@ -1,3 +1,4 @@
+# What Is Helm In Kubernetes
 **You**: Do you know Helm?
 
 --------
@@ -288,4 +289,104 @@ rsync -avz -e "ssh -o StrictHostKeyChecking=no" /data/postgresql $backup_locatio
 ```
 
 Please keep in mind that these are just examples and you may need to modify the scripts to fit your specific use case.
+
+--------
+**You**: is there any best practice for use helm?
+
+--------
+**ChatGPT**: Yes, there are best practices for using Helm, a package manager for Kubernetes. Here are a few of the most important ones:
+
+Use stable charts: When deploying applications using Helm, it is recommended to use stable charts from established repositories, such as the official Helm chart repository. Stable charts are well-tested and have a proven track record of reliability.
+
+Use versioning: It is important to specify the exact version of a chart to use when deploying an application. This helps to ensure that you are deploying the version of the application that you expect, and it also makes it easier to roll back to a previous version if necessary.
+
+Use values.yaml: Helm charts typically come with a ```values.yaml``` file that allows you to customize the configuration of the chart. It is recommended to use this file to specify your desired configuration, rather than modifying the chart directly.
+
+Use namespaces: When deploying applications using Helm, it is recommended to use Kubernetes namespaces to separate the resources belonging to different applications. This helps to prevent naming collisions and makes it easier to manage the resources belonging to each application.
+
+Use RBAC: If you are using a Kubernetes cluster with Role-Based Access Control (RBAC) enabled, it is recommended to use Helm's RBAC support to control who can deploy and manage charts.
+
+Use linting: Before deploying a chart, it is recommended to use a linting tool to check the chart for any potential issues. The Helm linting tool can help you catch syntax errors or potential problems with the chart before you deploy it.
+
+Use CI/CD: It is recommended to use a continuous integration/continuous delivery (CI/CD) pipeline to automate the deployment of charts. This helps to ensure that your applications are deployed consistently and reliably, and it also makes it easier to roll out new features and bug fixes.
+
+By following these best practices, you can help ensure that your deployments using Helm are successful, reliable, and easily manageable.
+
+--------
+**You**: show me more about script or config for these best practice for use helm
+
+--------
+**ChatGPT**: Here is a sample script that demonstrates some of the best practices for using Helm:bash
+```bash
+#!/bin/bash
+
+# Define the repository where stable charts will be pulled from
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+
+# Update the list of available charts
+helm repo update
+
+# Install the desired version of a chart
+helm install my-release stable/nginx-ingress --version 1.40.3 --namespace ingress-nginx
+
+# Use values.yaml to customize the chart
+helm install my-release stable/nginx-ingress --version 1.40.3 --namespace ingress-nginx -f values.yaml
+
+# Lint the chart before deploying
+helm lint my-chart
+
+# Use RBAC to control access to charts
+kubectl create clusterrolebinding my-cluster-role-binding \
+  --clusterrole=cluster-admin \
+  --user=my-user
+
+# Create a namespace for the chart
+kubectl create namespace my-namespace
+
+# Deploy the chart to the namespace
+helm install my-release stable/nginx-ingress --version 1.40.3 --namespace my-namespace
+
+# Use CI/CD to automate chart deployments
+# (Implementation of this step will vary depending on the specific CI/CD tool being used)
+```
+
+In this script, we add the official Helm chart repository as a source for stable charts. We then update the list of available charts, and install a specific version of the ```nginx-ingress``` chart to a namespace called ```my-namespace```. Before deploying the chart, we lint it to catch any potential issues, and use RBAC to control who has access to manage the chart. Finally, we use a CI/CD pipeline to automate the deployment of the chart.
+
+Note that this is just a sample script, and the specific steps you need to take to implement each best practice will depend on your specific use case and environment.
+
+--------
+**You**: show me this file values.yaml content
+
+--------
+**ChatGPT**: The ```values.yaml``` file is used to customize the configuration of a Helm chart. The contents of the file will depend on the specific chart you are using and the configuration options you want to set.
+
+Here is a simple example of a ```values.yaml``` file for the ```nginx-ingress``` chart:yaml
+```yaml
+controller:
+  replicaCount: 2
+  image:
+    repository: nginx/nginx-ingress
+    tag: latest
+  service:
+    type: LoadBalancer
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  tolerations:
+  - key: "ingress-controller"
+    operator: "Exists"
+  nodeSelector:
+    ingress-controller: "true"
+
+rbac:
+  create: true
+```
+
+In this example, we set the number of replicas of the ```nginx-ingress``` controller to 2, specify the image to use, and configure the type of service to be a LoadBalancer. We also set resource limits and requests for the controller, and configure tolerations and node selectors to control where the controller can run in the cluster. Additionally, we set ```rbac.create``` to ```true``` to enable the creation of RBAC resources for the chart.
+
+This is just a simple example, and the specific configuration options available for a chart will depend on the chart itself. You can consult the documentation for the chart you are using to see the full list of available configuration options and their default values.
 
