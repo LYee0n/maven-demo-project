@@ -152,3 +152,28 @@ lftp username@ftp.example.com:~&gt; quit
 
 Note that the default port for FTP is 21, the default port for FTPS is 990, and the default port for SFTP is 22. If the server you're connecting to uses a different port, you'll need to specify it using the ```-p``` option.
 
+--------
+**You**: how to use sftp key file ?
+
+--------
+**ChatGPT**: To connect to an SFTP server using a key file in ```lftp```, you can use the ```-u``` option to specify the username and the ```-e``` option to specify the location of the key file:javascript
+```javascript
+lftp -u username -e "set sftp:private-key=~/.ssh/id_rsa" sftp://ftp.example.com
+lftp sftp://ftp.example.com:~&gt; get filename.txt
+lftp sftp://ftp.example.com:~&gt; quit
+```
+
+In this example, the ```-u``` option is used to specify the username, and the ```-e``` option is used to specify the location of the private key file ```~/.ssh/id_rsa```. The ```set sftp:private-key``` command is used to specify the location of the key file, and the rest of the commands are the same as for connecting to an SFTP server without a key file.
+
+You can also specify the key file in a script file, as shown in a previous example:bash
+```bash
+#!/bin/sh
+
+lftp -u username -e "set sftp:private-key=~/.ssh/id_rsa" sftp://ftp.example.com &lt;&lt;EOF
+get filename.txt
+quit
+EOF
+```
+
+In this script, the ```-u``` and ```-e``` options are used to specify the username and the location of the private key file, respectively. The rest of the script is the same as for connecting to an SFTP server without a key file.
+
