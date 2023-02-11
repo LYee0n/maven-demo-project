@@ -52,8 +52,14 @@ services:
       - 9002:9000
     depends_on:
       - db
-
-
+  runner2:
+    image: gitlab/gitlab-runner:latest
+    environment:
+      CI_SERVER_URL: https://gitlab.com/
+      REGISTRATION_TOKEN: GR1348941LSjLhGurEyANmbB8vRDq
+      RUNNER_EXECUTOR: docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 volumes:
   main-db-data:
   minio_storage: {}
