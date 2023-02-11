@@ -1,18 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-nginx
-  labels:
-    app: {{ .Release.Name }}-nginx
+  name: nginx-deployment
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-nginx
+      app: nginx
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-nginx
+        app: nginx
     spec:
       containers:
       - name: nginx
