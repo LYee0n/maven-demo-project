@@ -5,23 +5,23 @@
 
 Here's a simple example to demonstrate the integration of Spring and Hibernate:First, you'll need to add the Spring and Hibernate dependencies to your project. You can do this by adding the following lines to your pom.xml file if you're using Maven:php
 ```php-template
-&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-core&lt;/artifactId&gt;
-   &lt;version&gt;5.3.3&lt;/version&gt;
-&lt;/dependency&gt;
+<dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-core</artifactId>
+   <version>5.3.3</version>
+</dependency>
 
-&lt;dependency&gt;
-   &lt;groupId&gt;org.springframework&lt;/groupId&gt;
-   &lt;artifactId&gt;spring-orm&lt;/artifactId&gt;
-   &lt;version&gt;5.3.3&lt;/version&gt;
-&lt;/dependency&gt;
+<dependency>
+   <groupId>org.springframework</groupId>
+   <artifactId>spring-orm</artifactId>
+   <version>5.3.3</version>
+</dependency>
 
-&lt;dependency&gt;
-   &lt;groupId&gt;org.hibernate&lt;/groupId&gt;
-   &lt;artifactId&gt;hibernate-core&lt;/artifactId&gt;
-   &lt;version&gt;5.4.20.Final&lt;/version&gt;
-&lt;/dependency&gt;
+<dependency>
+   <groupId>org.hibernate</groupId>
+   <artifactId>hibernate-core</artifactId>
+   <version>5.4.20.Final</version>
+</dependency>
 ```Next, you'll need to create a simple Java class that represents an entity in your database. For example, let's say you have a "Person" table in your database with columns "id", "first_name", and "last_name". You would create a Person class like this:less
 ```less
 @Entity
@@ -123,7 +123,7 @@ This is just a simple example to get you started with integrating Spring and Hib
 ```java
 public class HibernateSessionFactory {
 
-   private static final Map&lt;String, SessionFactory&gt; SESSION_FACTORIES = new HashMap&lt;&gt;();
+   private static final Map<String, SessionFactory> SESSION_FACTORIES = new HashMap<>();
 
    public static SessionFactory getSessionFactory(String targetDb) {
       SessionFactory sessionFactory = SESSION_FACTORIES.get(targetDb);
@@ -179,22 +179,22 @@ This is just an example of how you can implement a dynamic Hibernate configurati
 
 **ChatGPT**: Here's an example of a Hibernate configuration file (```.cfg.xml```) for a MySQL database:xml
 ```xml
-&lt;?xml version='1.0' encoding='utf-8'?&gt;
-&lt;!DOCTYPE hibernate-configuration PUBLIC
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"&gt;
-&lt;hibernate-configuration&gt;
-   &lt;session-factory&gt;
-      &lt;property name="hibernate.connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/property&gt;
-      &lt;property name="hibernate.connection.url"&gt;jdbc:mysql://localhost:3306/databaseName&lt;/property&gt;
-      &lt;property name="hibernate.connection.username"&gt;databaseUsername&lt;/property&gt;
-      &lt;property name="hibernate.connection.password"&gt;databasePassword&lt;/property&gt;
-      &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQL5Dialect&lt;/property&gt;
-      &lt;property name="hibernate.show_sql"&gt;true&lt;/property&gt;
-      &lt;property name="hibernate.format_sql"&gt;true&lt;/property&gt;
-      &lt;mapping class="com.example.domain.Person"/&gt;
-   &lt;/session-factory&gt;
-&lt;/hibernate-configuration&gt;
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+      <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+      <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/databaseName</property>
+      <property name="hibernate.connection.username">databaseUsername</property>
+      <property name="hibernate.connection.password">databasePassword</property>
+      <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+      <property name="hibernate.show_sql">true</property>
+      <property name="hibernate.format_sql">true</property>
+      <mapping class="com.example.domain.Person"/>
+   </session-factory>
+</hibernate-configuration>
 ```
 
 In this example, the ```connection.url``` property specifies the URL of the MySQL database, and the ```connection.username``` and ```connection.password``` properties specify the credentials for connecting to the database. The ```dialect``` property specifies the Hibernate dialect to use for generating SQL statements, and the ```show_sql``` and ```format_sql``` properties control whether Hibernate should log the generated SQL statements. Finally, the ```mapping``` element specifies the fully-qualified name of the domain class that represents the persistent entity in the database.

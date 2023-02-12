@@ -14,9 +14,9 @@ These tools allow you to automate FTP transfers and perform actions such as uplo
 **ChatGPT**: Here is an example of using ```lftp``` to connect to an FTP server, download a file, and then disconnect:sql
 ```sql
 $ lftp ftp.example.com
-lftp ftp.example.com:~&gt; user username password
-lftp username@ftp.example.com:~&gt; get filename.txt
-lftp username@ftp.example.com:~&gt; quit
+lftp ftp.example.com:~> user username password
+lftp username@ftp.example.com:~> get filename.txt
+lftp username@ftp.example.com:~> quit
 ```
 
 In this example, the first line connects to the FTP server ```ftp.example.com```. The ```user``` command is used to log in with the username ```username``` and password ```password```. The ```get``` command is used to download the file ```filename.txt``` from the server, and the ```quit``` command is used to disconnect from the server.
@@ -25,7 +25,7 @@ You can also use ```lftp``` to automate transfers by putting the commands in a s
 ```bash
 #!/bin/sh
 
-lftp ftp.example.com &lt;&lt;EOF
+lftp ftp.example.com <<EOF
 user username password
 get filename.txt
 quit
@@ -43,9 +43,9 @@ This script logs into the FTP server, downloads the file ```filename.txt```, and
 Here's an example of uploading multiple files to the FTP server:sql
 ```sql
 lftp ftp.example.com
-lftp ftp.example.com:~&gt; user username password
-lftp username@ftp.example.com:~&gt; mput file1.txt file2.txt file3.txt
-lftp username@ftp.example.com:~&gt; quit
+lftp ftp.example.com:~> user username password
+lftp username@ftp.example.com:~> mput file1.txt file2.txt file3.txt
+lftp username@ftp.example.com:~> quit
 ```
 
 In this example, the ```mput``` command is used to upload the files ```file1.txt```, ```file2.txt```, and ```file3.txt``` to the FTP server.
@@ -53,9 +53,9 @@ In this example, the ```mput``` command is used to upload the files ```file1.txt
 And here's an example of downloading multiple files from the FTP server:sql
 ```sql
 lftp ftp.example.com
-lftp ftp.example.com:~&gt; user username password
-lftp username@ftp.example.com:~&gt; mget file1.txt file2.txt file3.txt
-lftp username@ftp.example.com:~&gt; quit
+lftp ftp.example.com:~> user username password
+lftp username@ftp.example.com:~> mget file1.txt file2.txt file3.txt
+lftp username@ftp.example.com:~> quit
 ```
 
 In this example, the ```mget``` command is used to download the files ```file1.txt```, ```file2.txt```, and ```file3.txt``` from the FTP server.
@@ -70,7 +70,7 @@ Note that you can use wildcard characters to download or upload multiple files t
 ```bash
 #!/bin/sh
 
-lftp -u username,password ftp.example.com &lt;&lt;EOF
+lftp -u username,password ftp.example.com <<EOF
 mput file1.txt file2.txt file3.txt
 quit
 EOF
@@ -82,7 +82,7 @@ Here's an example of a script that downloads multiple files from the FTP server:
 ```bash
 #!/bin/sh
 
-lftp -u username,password ftp.example.com &lt;&lt;EOF
+lftp -u username,password ftp.example.com <<EOF
 mget file1.txt file2.txt file3.txt
 quit
 EOF
@@ -103,17 +103,17 @@ To connect to an FTP server using ```lftp```, simply specify the server's hostna
 To connect to an FTPS server, use the ```ftps``` protocol instead of ```ftp``` when connecting to the server:kotlin
 ```kotlin
 lftp ftps://ftp.example.com
-lftp ftps://ftp.example.com:~&gt; user username password
-lftp username@ftp.example.com:~&gt; get filename.txt
-lftp username@ftp.example.com:~&gt; quit
+lftp ftps://ftp.example.com:~> user username password
+lftp username@ftp.example.com:~> get filename.txt
+lftp username@ftp.example.com:~> quit
 ```
 
 To connect to an SFTP server, use the ```sftp``` protocol instead of ```ftp``` when connecting to the server:kotlin
 ```kotlin
 lftp sftp://ftp.example.com
-lftp sftp://ftp.example.com:~&gt; user username password
-lftp username@ftp.example.com:~&gt; get filename.txt
-lftp username@ftp.example.com:~&gt; quit
+lftp sftp://ftp.example.com:~> user username password
+lftp username@ftp.example.com:~> get filename.txt
+lftp username@ftp.example.com:~> quit
 ```
 
 In both the FTPS and SFTP examples, the rest of the commands are the same as for FTP.
@@ -127,9 +127,9 @@ In both the FTPS and SFTP examples, the rest of the commands are the same as for
 Here's an example of connecting to an FTP server on a non-standard port:sql
 ```sql
 lftp -p 21 ftp.example.com
-lftp ftp.example.com:~&gt; user username password
-lftp username@ftp.example.com:~&gt; get filename.txt
-lftp username@ftp.example.com:~&gt; quit
+lftp ftp.example.com:~> user username password
+lftp username@ftp.example.com:~> get filename.txt
+lftp username@ftp.example.com:~> quit
 ```
 
 In this example, the ```-p 21``` option is used to specify the port number for the FTP server.
@@ -137,17 +137,17 @@ In this example, the ```-p 21``` option is used to specify the port number for t
 Here's an example of connecting to an FTPS server on a non-standard port:kotlin
 ```kotlin
 lftp -p 990 ftps://ftp.example.com
-lftp ftps://ftp.example.com:~&gt; user username password
-lftp username@ftp.example.com:~&gt; get filename.txt
-lftp username@ftp.example.com:~&gt; quit
+lftp ftps://ftp.example.com:~> user username password
+lftp username@ftp.example.com:~> get filename.txt
+lftp username@ftp.example.com:~> quit
 ```
 
 And here's an example of connecting to an SFTP server on a non-standard port:kotlin
 ```kotlin
 lftp -p 22 sftp://ftp.example.com
-lftp sftp://ftp.example.com:~&gt; user username password
-lftp username@ftp.example.com:~&gt; get filename.txt
-lftp username@ftp.example.com:~&gt; quit
+lftp sftp://ftp.example.com:~> user username password
+lftp username@ftp.example.com:~> get filename.txt
+lftp username@ftp.example.com:~> quit
 ```
 
 Note that the default port for FTP is 21, the default port for FTPS is 990, and the default port for SFTP is 22. If the server you're connecting to uses a different port, you'll need to specify it using the ```-p``` option.
@@ -159,8 +159,8 @@ Note that the default port for FTP is 21, the default port for FTPS is 990, and 
 **ChatGPT**: To connect to an SFTP server using a key file in ```lftp```, you can use the ```-u``` option to specify the username and the ```-e``` option to specify the location of the key file:javascript
 ```javascript
 lftp -u username -e "set sftp:private-key=~/.ssh/id_rsa" sftp://ftp.example.com
-lftp sftp://ftp.example.com:~&gt; get filename.txt
-lftp sftp://ftp.example.com:~&gt; quit
+lftp sftp://ftp.example.com:~> get filename.txt
+lftp sftp://ftp.example.com:~> quit
 ```
 
 In this example, the ```-u``` option is used to specify the username, and the ```-e``` option is used to specify the location of the private key file ```~/.ssh/id_rsa```. The ```set sftp:private-key``` command is used to specify the location of the key file, and the rest of the commands are the same as for connecting to an SFTP server without a key file.
@@ -169,7 +169,7 @@ You can also specify the key file in a script file, as shown in a previous examp
 ```bash
 #!/bin/sh
 
-lftp -u username -e "set sftp:private-key=~/.ssh/id_rsa" sftp://ftp.example.com &lt;&lt;EOF
+lftp -u username -e "set sftp:private-key=~/.ssh/id_rsa" sftp://ftp.example.com <<EOF
 get filename.txt
 quit
 EOF

@@ -133,20 +133,20 @@ public class GenerateYaml {
         Connection conn = DriverManager.getConnection("jdbc:postgresql://" + host + "/" + database, username, password);
         Statement stmt = conn.createStatement();
 
-        List&lt;Map&lt;String, Object&gt;&gt; tables = new ArrayList&lt;&gt;();
+        List<Map<String, Object>> tables = new ArrayList<>();
 
         ResultSet rs = stmt.executeQuery("SELECT table_name FROM information_schema.tables WHERE table_schema='public'");
         while (rs.next()) {
             String tableName = rs.getString("table_name");
 
-            Map&lt;String, Object&gt; table = new HashMap&lt;&gt;();
+            Map<String, Object> table = new HashMap<>();
             table.put("table_name", tableName);
 
-            List&lt;Map&lt;String, Object&gt;&gt; columns = new ArrayList&lt;&gt;();
+            List<Map<String, Object>> columns = new ArrayList<>();
 
             ResultSet rsColumns = stmt.executeQuery("SELECT column_name, data_type, is_nullable, column_default, ordinal_position FROM information_schema.columns WHERE table_name='" + tableName + "'");
             while (rsColumns.next()) {
-                Map&lt;String, Object&gt; column = new HashMap&lt;&gt;();
+                Map<String, Object> column = new HashMap<>();
                 column.put("name", rsColumns.getString("column_name"));
                 column.put("type", rsColumns.getString("data_type"));
                 column.put("ordinal_position", rsColumns.getInt("ordinal_position"));
@@ -165,7 +165,7 @@ public class GenerateYaml {
                 String constraintName = rsConstraints.getString("constraint_name");
                 String constraintType = rsConstraints.getString("constraint_type");
 
-                for (Map&lt;String, Object&gt; column : columns) {
+                for (Map<String, Object> column : columns) {
                     if (constraintName.contains((String) column.get("name"))) {
                         if (constraintType.equals("PRIMARY KEY")) {
                             column.put("primary_key", true);
@@ -183,11 +183,11 @@ public class GenerateYaml {
 ```javascript
         table.put("columns", columns);
 
-        List&lt;Map&lt;String, Object&gt;&gt; relations = new ArrayList&lt;&gt;();
+        List<Map<String, Object>> relations = new ArrayList<>();
 
         ResultSet rsRelations = stmt.executeQuery("SELECT c.column_name, tc.table_name, kcu.referenced_table_name, kcu.referenced_column_name FROM information_schema.table_constraints tc JOIN information_schema.key_column_usage kcu ON tc.constraint_name = kcu.constraint_name JOIN information_schema.columns c ON c.table_name = tc.table_name AND c.column_name = kcu.column_name WHERE constraint_type = 'FOREIGN KEY' AND tc.table_name='" + tableName + "'");
         while (rsRelations.next()) {
-            Map&lt;String, Object&gt; relation = new HashMap&lt;&gt;();
+            Map<String, Object> relation = new HashMap<>();
             relation.put("column_name", rsRelations.getString("column_name"));
             relation.put("table_name", rsRelations.getString("table_name"));
             relation.put("referenced_table_name", rsRelations.getString("referenced_table_name"));
@@ -261,9 +261,9 @@ Statement targetStmt = targetConn.createStatement();
 ResultSet sourceData = sourceStmt.executeQuery("SELECT * FROM " + sourceTableName);
 ResultSet targetData = targetStmt.executeQuery("SELECT * FROM " + targetTableName);
 
-List&lt;String&gt; createStatements = new ArrayList&lt;&gt;();
-List&lt;String&gt; updateStatements = new ArrayList&lt;&gt;();
-List&lt;String&gt; deleteStatements = new ArrayList&lt;&gt;();
+List<String> createStatements = new ArrayList<>();
+List<String> updateStatements = new ArrayList<>();
+List<String> deleteStatements = new ArrayList<>();
 
 // Compare the data in the source and target databases
 while (sourceData.next()) {

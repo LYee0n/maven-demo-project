@@ -18,7 +18,7 @@ It is important to note that this query is only an example and may need to be al
 ```sql
 SELECT number_group, MAX(date) as last_day, score
 FROM scores
-WHERE number_group = &lt;specific number group&gt;
+WHERE number_group = <specific number group>
 GROUP BY number_group
 ```
 

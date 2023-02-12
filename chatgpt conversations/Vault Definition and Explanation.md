@@ -163,14 +163,14 @@ By following these best practices, you can help reduce the risk of secrets being
 **ChatGPT**: Here's a sample script using the Vault CLI to implement the best practices for access control and auditing:bash
 ```bash
 # Create a policy for the "admin" role
-vault policy write admin - &lt;&lt;EOF
+vault policy write admin - <<EOF
 path "secret/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
 EOF
 
 # Create a policy for the "appuser" role
-vault policy write appuser - &lt;&lt;EOF
+vault policy write appuser - <<EOF
 path "secret/app/*" {
   capabilities = ["read"]
 }
@@ -247,7 +247,7 @@ vault auth read [AUTH_PATH]
 vault write auth/userpass/users/appuser password=password policies=appuser
 
 # Use Vault's built-in roles and policies for common use cases
-vault write sys/policies/acl/default rules=-&lt;&lt;EOF
+vault write sys/policies/acl/default rules=-<<EOF
 path "secret/data/*" {
   capabilities = ["create", "read", "update", "delete", "list"]
 }
@@ -272,11 +272,11 @@ vault kv put secret/app1/config username=app1password=password
 vault kv put secret/app2/config username=app2password=password
 
 # Use Sentinel policies to enforce fine-grained, business-specific policies
-vault policy write app1-policy - &lt;&lt;EOF
+vault policy write app1-policy - <<EOF
 import "time"
 
 main = rule {
-  time.now().hour &gt;= 9 and time.now().hour &lt;= 17
+  time.now().hour >= 9 and time.now().hour <= 17
 }
 EOF
 

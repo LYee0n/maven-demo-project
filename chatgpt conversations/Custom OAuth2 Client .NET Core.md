@@ -7,27 +7,27 @@ Add the Microsoft.AspNetCore.Authentication.OAuth library to your project. This 
 
 Configure your OAuth 2.0 client by adding the following code to your Startup.cs file:javascript
 ```javascript
-services.AddAuthentication(options =&gt;
+services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-.AddOAuth("OAuth", options =&gt;
+.AddOAuth("OAuth", options =>
 {
-    options.ClientId = "&lt;client_id&gt;";
-    options.ClientSecret = "&lt;client_secret&gt;";
+    options.ClientId = "<client_id>";
+    options.ClientSecret = "<client_secret>";
     options.CallbackPath = new PathString("/signin-oauth");
 
-    options.AuthorizationEndpoint = "&lt;authorization_endpoint&gt;";
-    options.TokenEndpoint = "&lt;token_endpoint&gt;";
-    options.UserInformationEndpoint = "&lt;user_information_endpoint&gt;";
+    options.AuthorizationEndpoint = "<authorization_endpoint>";
+    options.TokenEndpoint = "<token_endpoint>";
+    options.UserInformationEndpoint = "<user_information_endpoint>";
 
     options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
     options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
 
     options.Events = new OAuthEvents
     {
-        OnCreatingTicket = async context =&gt;
+        OnCreatingTicket = async context =>
         {
             // Add additional claims, if necessary
         },
@@ -44,7 +44,7 @@ return Challenge(new AuthenticationProperties { RedirectUri = "/" }, "OAuth");
 var name = User.FindFirstValue(ClaimTypes.Name);
 ```
 
-Note: You need to replace ```&lt;client_id&gt;```, ```&lt;client_secret&gt;```, ```&lt;authorization_endpoint&gt;```, ```&lt;token_endpoint&gt;```, and ```&lt;user_information_endpoint&gt;``` with the appropriate values for your OAuth 2.0 provider.
+Note: You need to replace ```<client_id>```, ```<client_secret>```, ```<authorization_endpoint>```, ```<token_endpoint>```, and ```<user_information_endpoint>``` with the appropriate values for your OAuth 2.0 provider.
 
 **You**: continue
 
@@ -60,16 +60,16 @@ public IActionResult Index()
 }
 ```Add the callback path for the OAuth 2.0 provider in your ```Configure``` method in Startup.cs:javascript
 ```javascript
-app.Map("/signin-oauth", signin =&gt;
+app.Map("/signin-oauth", signin =>
 {
-    signin.Run(async context =&gt;
+    signin.Run(async context =>
     {
         await context.ChallengeAsync("OAuth", new AuthenticationProperties { RedirectUri = "/" });
     });
 });
 ```Finally, make sure you have a view to display the authenticated user's information. For example, you could create an ```Index.cshtml``` view with the following code:css
 ```css
-&lt;h1&gt;Hello @User.FindFirstValue(ClaimTypes.Name)!&lt;/h1&gt;
+<h1>Hello @User.FindFirstValue(ClaimTypes.Name)!</h1>
 ```
 
 This should get you started with implementing a custom OAuth 2.0 client in .NET Core. You can customize the implementation as needed to fit your specific requirements.
@@ -80,7 +80,7 @@ This should get you started with implementing a custom OAuth 2.0 client in .NET 
 ```javascript
 options.Events = new OAuthEvents
 {
-    OnRemoteFailure = context =&gt;
+    OnRemoteFailure = context =>
     {
         context.HandleResponse();
         context.Response.Redirect("/error?message=" + context.Failure.Message);
@@ -89,7 +89,7 @@ options.Events = new OAuthEvents
 };
 ```To add a logout feature to your application, you can add a logout endpoint to your controller:csharp
 ```csharp
-public async Task&lt;IActionResult&gt; Logout()
+public async Task<IActionResult> Logout()
 {
     await HttpContext.SignOutAsync();
     return RedirectToAction("Index", "Home");
@@ -112,14 +112,14 @@ public HomeController(IMemoryCache memoryCache)
 [Authorize]
 public IActionResult Index()
 {
-    var accessToken = _memoryCache.Get&lt;string&gt;(User.FindFirstValue(ClaimTypes.NameIdentifier));
+    var accessToken = _memoryCache.Get<string>(User.FindFirstValue(ClaimTypes.NameIdentifier));
     // Use the access token as needed in your application.
 
     return View();
 }
 
 [Authorize]
-public async Task&lt;IActionResult&gt; Logout()
+public async Task<IActionResult> Logout()
 {
     _memoryCache.Remove(User.FindFirstValue(ClaimTypes.NameIdentifier));
     await HttpContext.SignOutAsync();
@@ -154,7 +154,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 ```typescript
 options.Events = new OAuthEvents
 {
-    OnTicketReceived = context =&gt;
+    OnTicketReceived = context =>
     {
         var state = context.Properties.GetTokenValue("state");
         if (string.IsNullOrEmpty(state) || state != context.HttpContext.Request.Query["state"])

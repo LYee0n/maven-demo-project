@@ -102,14 +102,14 @@ This is just a simple example of how you can use a script to deploy an applicati
 
 Here's an example of how you can get the logs for a specific container:php
 ```php-template
-kubectl logs &lt;pod_name&gt; -c nginx
+kubectl logs <pod_name> -c nginx
 ```
 
-In this example, ```&lt;pod_name&gt;``` is the name of the pod that is running the Nginx container and ```-c nginx``` specifies the name of the container. You can use the ```kubectl get pods``` command to get a list of all the pods in your cluster and find the name of the pod that is running the Nginx container.
+In this example, ```<pod_name>``` is the name of the pod that is running the Nginx container and ```-c nginx``` specifies the name of the container. You can use the ```kubectl get pods``` command to get a list of all the pods in your cluster and find the name of the pod that is running the Nginx container.
 
 Alternatively, you can get logs for all containers in a pod using the following command:php
 ```php-template
-kubectl logs &lt;pod_name&gt;
+kubectl logs <pod_name>
 ```
 
 Note that this will give you the logs for all containers in the pod, not just the Nginx container.
@@ -122,10 +122,10 @@ Note that this will give you the logs for all containers in the pod, not just th
 
 However, you can use the ```kubectl exec``` command to execute commands in a container within a pod. For example, the following command will open a shell in the Nginx container:python
 ```python
-kubectl exec -it &lt;pod_name&gt; -c nginx -- /bin/bash
+kubectl exec -it <pod_name> -c nginx -- /bin/bash
 ```
 
-In this example, ```&lt;pod_name&gt;``` is the name of the pod that is running the Nginx container and ```-c nginx``` specifies the name of the container. You can use the ```kubectl get pods``` command to get a list of all the pods in your cluster and find the name of the pod that is running the Nginx container.
+In this example, ```<pod_name>``` is the name of the pod that is running the Nginx container and ```-c nginx``` specifies the name of the container. You can use the ```kubectl get pods``` command to get a list of all the pods in your cluster and find the name of the pod that is running the Nginx container.
 
 --------
 **You**: how can I do the same deploy with helm?
@@ -224,10 +224,10 @@ Step 6: Access the application
 
 Use the following command to get the URL to access the application:css
 ```css
-minikube service &lt;release_name&gt;-nginx --url
+minikube service <release_name>-nginx --url
 ```
 
-Replace ```&lt;release_name&gt;``` with the name of the release, which you can find using the ```helm list``` command.
+Replace ```<release_name>``` with the name of the release, which you can find using the ```helm list``` command.
 
 You should see an output similar to the following:javascript
 ```javascript
@@ -636,13 +636,13 @@ This way, you can use Helm to deploy Minio with the access key and secret key al
 
 Here's an example of how to use pg_dump to backup a PostgreSQL database on Kubernetes:Connect to the PostgreSQL pod:python
 ```python
-kubectl exec -it &lt;postgres-pod-name&gt; bash
+kubectl exec -it <postgres-pod-name> bash
 ```Run the pg_dump command to backup the database:php
 ```php-template
-pg_dump &lt;database-name&gt; -U &lt;username&gt; -F t -f /backups/&lt;database-name&gt;.tar
+pg_dump <database-name> -U <username> -F t -f /backups/<database-name>.tar
 ```
 
-In this example, ```&lt;database-name&gt;``` is the name of the database you want to backup, ```&lt;username&gt;``` is the name of the PostgreSQL user, and ```/backups/&lt;database-name&gt;.tar``` is the file name for the backup. The ```-F t``` option specifies that the backup should be in tar format.
+In this example, ```<database-name>``` is the name of the database you want to backup, ```<username>``` is the name of the PostgreSQL user, and ```/backups/<database-name>.tar``` is the file name for the backup. The ```-F t``` option specifies that the backup should be in tar format.
 
 Once the backup is complete, you can copy the backup file to a safe location for storage.
 
@@ -666,18 +666,18 @@ kubectl create -f postgres-service.yaml
 
 This service should define the network access to your PostgreSQL deployment, such as the port and target port.Copy the backup file to the new PostgreSQL pod:ruby
 ```ruby
-kubectl cp &lt;backup-file-location&gt; &lt;postgres-pod-name&gt;:/backups/&lt;database-name&gt;.tar
+kubectl cp <backup-file-location> <postgres-pod-name>:/backups/<database-name>.tar
 ```
 
-In this example, ```&lt;backup-file-location&gt;``` is the location of the backup file, ```&lt;postgres-pod-name&gt;``` is the name of the new PostgreSQL pod, and ```/backups/&lt;database-name&gt;.tar``` is the location in the pod where the backup file should be stored.Connect to the new PostgreSQL pod:python
+In this example, ```<backup-file-location>``` is the location of the backup file, ```<postgres-pod-name>``` is the name of the new PostgreSQL pod, and ```/backups/<database-name>.tar``` is the location in the pod where the backup file should be stored.Connect to the new PostgreSQL pod:python
 ```python
-kubectl exec -it &lt;postgres-pod-name&gt; bash
+kubectl exec -it <postgres-pod-name> bash
 ```Restore the backup file:php
 ```php-template
-pg_restore -C -U &lt;username&gt; -d &lt;database-name&gt; /backups/&lt;database-name&gt;.tar
+pg_restore -C -U <username> -d <database-name> /backups/<database-name>.tar
 ```
 
-In this example, ```&lt;username&gt;``` is the name of the PostgreSQL user, and ```&lt;database-name&gt;``` is the name of the database you want to restore.
+In this example, ```<username>``` is the name of the PostgreSQL user, and ```<database-name>``` is the name of the database you want to restore.
 
 Once the restore is complete, your new PostgreSQL database on Kubernetes should contain the data from the backup file.
 
@@ -967,7 +967,7 @@ Create a service account with sufficient permissions to deploy resources to the 
 
 Retrieve the API endpoint of the cluster and the authentication credentials for the service account.
 
-In your GitLab instance, navigate to your project's CI/CD &gt; Variables settings, and add the following environment variables:
+In your GitLab instance, navigate to your project's CI/CD > Variables settings, and add the following environment variables:
 
 ```KUBE_URL```: The API endpoint of the Kubernetes cluster.
 
@@ -979,7 +979,7 @@ In your GitLab instance, navigate to your project's CI/CD &gt; Variables setting
 --------
 **ChatGPT**: The ```KUBE_URL``` is the API endpoint of your Kubernetes cluster. This endpoint can be obtained using the following steps:Open a terminal and connect to the Kubernetes cluster using the ```kubectl``` command. For example:lua
 ```lua
-$ kubectl config use-context &lt;context-name&gt;
+$ kubectl config use-context <context-name>
 ```Display the cluster information using the following command:ruby
 ```ruby
 $ kubectl cluster-info
@@ -994,10 +994,10 @@ The ```KUBE_URL``` is the URL displayed in the output, ```https://k8s.example.co
 
 The ```KUBE_TOKEN``` is the authentication token for a service account with sufficient permissions to deploy resources to the cluster. To obtain the token, you can create a new service account and retrieve its token using the following steps:Create a new service account using the following command:lua
 ```lua
-$ kubectl create serviceaccount &lt;service-account-name&gt;
+$ kubectl create serviceaccount <service-account-name>
 ```Retrieve the token for the service account using the following command:perl
 ```perl
-$ kubectl get secrets | grep &lt;service-account-name&gt; | awk '{print $1}' | xargs kubectl describe secret | grep "token:" | awk '{print $2}'
+$ kubectl get secrets | grep <service-account-name> | awk '{print $1}' | xargs kubectl describe secret | grep "token:" | awk '{print $2}'
 ```
 
 The output will contain the token for the service account, for example:```eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InNlcnZpY2UtYWNjb3VudC10b2tlbi1sMm9nZSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJzZXJ2aWNlLWFjY291bnQiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiJhMTYxOGZmNS0xMjA0LTExZTktOGIyMC0wMDAwMDAwMDAwMDAiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6ZGVmYXVsdDpzZXJ

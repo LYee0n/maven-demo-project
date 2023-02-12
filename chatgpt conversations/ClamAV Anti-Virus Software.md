@@ -1,4 +1,4 @@
-**You**: Do you know malware clamAV&gt;
+**You**: Do you know malware clamAV>
 
 --------
 **ChatGPT**: Yes, I am familiar with ClamAV. ClamAV is an open-source antivirus software that can be used to detect and remove malware from a computer or network. It is commonly used as a back-end for email servers, web servers, and other servers that need to scan files for malicious content. ClamAV is designed to be fast and efficient, and it is regularly updated to stay current with the latest threats.
@@ -139,7 +139,7 @@ This script will update the virus definitions and scan the specified file or dir
 You can also add this script to your PATH so that you can run it from anywhere on your system. This makes it easy to run on-demand scans whenever you need to, without having to navigate to the directory where the script is located. To add the script to your PATH, consult the documentation for your operating system.
 
 --------
-**You**: how to use it in java to scan files&gt;
+**You**: how to use it in java to scan files>
 
 --------
 **ChatGPT**: To use ClamAV in a Java application, you can use the ClamAV Java library, which provides a Java API for interacting with the ClamAV antivirus engine.

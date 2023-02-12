@@ -64,7 +64,7 @@ deploy:
 
 Commit and push the .gitlab-ci.yml file to the GitLab repository.
 
-In GitLab, navigate to the CI/CD &gt; Pipelines page and trigger the pipeline by pushing changes to the repository.
+In GitLab, navigate to the CI/CD > Pipelines page and trigger the pipeline by pushing changes to the repository.
 
 Monitor the pipeline in the GitLab CI/CD interface to see the status of the stages and tasks.
 

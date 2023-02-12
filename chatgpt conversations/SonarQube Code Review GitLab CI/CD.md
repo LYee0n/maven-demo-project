@@ -48,42 +48,42 @@ Note that this is just a basic example, and you can customize the pipeline as ne
 
 **You**: is there any config require in maven project pom.xml?
 
-**ChatGPT**: Yes, you will need to make some configuration changes to your Maven project's pom.xml file in order to use SonarQube for code analysis. Here are the steps to configure your Maven project to use SonarQube:Add the SonarQube Maven plugin to your pom.xml file: You can add the SonarQube Maven plugin to your pom.xml file by adding the following code in the ```&lt;build&gt;``` section of your pom.xml file:php
+**ChatGPT**: Yes, you will need to make some configuration changes to your Maven project's pom.xml file in order to use SonarQube for code analysis. Here are the steps to configure your Maven project to use SonarQube:Add the SonarQube Maven plugin to your pom.xml file: You can add the SonarQube Maven plugin to your pom.xml file by adding the following code in the ```<build>``` section of your pom.xml file:php
 ```php-template
-&lt;build&gt;
-  &lt;plugins&gt;
-    &lt;plugin&gt;
-      &lt;groupId&gt;org.sonarsource.scanner.maven&lt;/groupId&gt;
-      &lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;3.7.0.1746&lt;/version&gt;
-    &lt;/plugin&gt;
-  &lt;/plugins&gt;
-&lt;/build&gt;
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.sonarsource.scanner.maven</groupId>
+      <artifactId>sonar-maven-plugin</artifactId>
+      <version>3.7.0.1746</version>
+    </plugin>
+  </plugins>
+</build>
 ```
 
-Note: You should replace ```3.7.0.1746``` with the latest version of the SonarQube Maven plugin.Configure the SonarQube Maven plugin: In the same pom.xml file, you'll need to configure the SonarQube Maven plugin to point to your SonarQube instance. You can do this by adding the following code in the ```&lt;build&gt;``` section of your pom.xml file:php
+Note: You should replace ```3.7.0.1746``` with the latest version of the SonarQube Maven plugin.Configure the SonarQube Maven plugin: In the same pom.xml file, you'll need to configure the SonarQube Maven plugin to point to your SonarQube instance. You can do this by adding the following code in the ```<build>``` section of your pom.xml file:php
 ```php-template
-&lt;build&gt;
-  &lt;plugins&gt;
-    &lt;plugin&gt;
-      &lt;groupId&gt;org.sonarsource.scanner.maven&lt;/groupId&gt;
-      &lt;artifactId&gt;sonar-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;3.7.0.1746&lt;/version&gt;
-      &lt;executions&gt;
-        &lt;execution&gt;
-          &lt;id&gt;sonar&lt;/id&gt;
-          &lt;goals&gt;
-            &lt;goal&gt;sonar&lt;/goal&gt;
-          &lt;/goals&gt;
-        &lt;/execution&gt;
-      &lt;/executions&gt;
-      &lt;configuration&gt;
-        &lt;sonar.host.url&gt;http://localhost:9000&lt;/sonar.host.url&gt;
-        &lt;sonar.login&gt;your-token&lt;/sonar.login&gt;
-      &lt;/configuration&gt;
-    &lt;/plugin&gt;
-  &lt;/plugins&gt;
-&lt;/build&gt;
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.sonarsource.scanner.maven</groupId>
+      <artifactId>sonar-maven-plugin</artifactId>
+      <version>3.7.0.1746</version>
+      <executions>
+        <execution>
+          <id>sonar</id>
+          <goals>
+            <goal>sonar</goal>
+          </goals>
+        </execution>
+      </executions>
+      <configuration>
+        <sonar.host.url>http://localhost:9000</sonar.host.url>
+        <sonar.login>your-token</sonar.login>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 ```
 
 Note: Replace ```http://localhost:9000``` with the URL of your SonarQube instance, and replace ```your-token``` with the token that you generated in GitLab for SonarQube.

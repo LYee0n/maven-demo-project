@@ -25,10 +25,10 @@ First, make sure that the RabbitMQ server is running and the ```rabbitmqadmin```
 
 To publish a message to a queue, you can use the following syntax:php
 ```php-template
-rabbitmqadmin publish exchange=&lt;exchange&gt; routing_key=&lt;routing_key&gt; payload="&lt;payload&gt;"
+rabbitmqadmin publish exchange=<exchange> routing_key=<routing_key> payload="<payload>"
 ```
 
-Where:```&lt;exchange&gt;``` is the name of the exchange that you want to publish the message to.```&lt;routing_key&gt;``` is the routing key that will be used to determine which queue(s) the message should be delivered to.```&lt;payload&gt;``` is the message body that you want to send.
+Where:```<exchange>``` is the name of the exchange that you want to publish the message to.```<routing_key>``` is the routing key that will be used to determine which queue(s) the message should be delivered to.```<payload>``` is the message body that you want to send.
 
 For example, if you want to publish a message to an exchange called ```my_exchange``` with a routing key of ```my_routing_key```, and a payload of ```Hello, World!```, you would use the following command:python
 ```python

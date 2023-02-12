@@ -33,7 +33,7 @@ BEGIN
     DECLARE @i INT = 1
     DECLARE @col1 INT, @col2 VARCHAR(50), @col3 DATE
 
-    WHILE (@i &lt;= 10)
+    WHILE (@i <= 10)
     BEGIN
         SET @col1 = @i
         SET @col2 = 'value' + CAST(@i AS VARCHAR)
@@ -158,7 +158,7 @@ BEGIN
     DECLARE @date DATE = '2022-01-01'
     DECLARE @endDate DATE = '2022-12-31'
 
-    WHILE (@date &lt;= @endDate)
+    WHILE (@date <= @endDate)
     BEGIN
         -- perform action here
         PRINT @date

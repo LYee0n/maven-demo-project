@@ -20,9 +20,9 @@ namespace ReadExcelFile
             Worksheet worksheet = workbook.ActiveSheet;
             Range range = worksheet.UsedRange;
 
-            for (int row = 1; row &lt;= range.Rows.Count; row++)
+            for (int row = 1; row <= range.Rows.Count; row++)
             {
-                for (int col = 1; col &lt;= range.Columns.Count; col++)
+                for (int col = 1; col <= range.Columns.Count; col++)
                 {
                     Console.Write(range.Cells[row, col].Value2.ToString() + "\t");
                 }
@@ -63,9 +63,9 @@ namespace ReadExcelFile
             Range range = worksheet.UsedRange;
 
             // Create a list to store the data
-            List&lt;MyModel&gt; data = new List&lt;MyModel&gt;();
+            List<MyModel> data = new List<MyModel>();
 
-            for (int row = 2; row &lt;= range.Rows.Count; row++)
+            for (int row = 2; row <= range.Rows.Count; row++)
             {
                 MyModel model = new MyModel();
                 model.A = Convert.ToString(range.Cells[row, 1].Value2);
@@ -111,7 +111,7 @@ namespace ExportToExcelFile
     {
         static void Main(string[] args)
         {
-            List&lt;MyModel&gt; data = new List&lt;MyModel&gt;()
+            List<MyModel> data = new List<MyModel>()
             {
                 new MyModel { A = "ValueA1", B = "ValueB1", C = "ValueC1" },
                 new MyModel { A = "ValueA2", B = "ValueB2", C = "ValueC2" },
@@ -166,10 +166,10 @@ Add a new Web Form to the project and name it ```UploadFile.aspx```.
 
 Open the ```UploadFile.aspx``` file and add the following code inside the ```form``` tag:php
 ```php-template
-&lt;asp:FileUpload ID="fileUpload" runat="server" /&gt;
-&lt;asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" /&gt;
-&lt;br /&gt;
-&lt;asp:Label ID="lblMessage" runat="server" /&gt;
+<asp:FileUpload ID="fileUpload" runat="server" />
+<asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" />
+<br />
+<asp:Label ID="lblMessage" runat="server" />
 ```
 
 This code adds a file upload control, a button, and a label to the form. The file upload control allows users to select a file, and the button is used to trigger the file upload process. The label will be used to display a message indicating the result of the file upload process.Open the code-behind file for the ```UploadFile.aspx``` page and add the following code to the ```UploadFile``` class:csharp
@@ -202,7 +202,7 @@ protected void btnUpload_Click(object sender, EventArgs e)
 
 This code implements the event handler for the ```Click``` event of the ```btnUpload``` button. When the button is clicked, the code checks if a file has been selected using the ```HasFile``` property of the ```fileUpload``` control. If a file has been selected, it gets the file name, extension, and size, and checks if the file extension is either ```.xlsx``` or ```.xls```. If the file extension is valid, it saves the file to a folder named ```Uploads``` in the root directory of the application using the ```SaveAs``` method of the ```fileUpload``` control. The result of the file upload process is displayed using the ```lblMessage``` label.
 
-In the Solution Explorer, right-click on the project and select "Add" &gt; "New Folder". Name the new folder "Uploads".
+In the Solution Explorer, right-click on the project and select "Add" > "New Folder". Name the new folder "Uploads".
 
 Run the project and test the file upload feature by navigating to the ```UploadFile.aspx``` page and selecting a file to upload.
 

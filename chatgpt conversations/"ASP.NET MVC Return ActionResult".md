@@ -38,28 +38,28 @@ In summary, you can use the ```ActionResult``` class to return a wide variety of
 
 **You**: continue
 
-**ChatGPT**: Another way you can return a custom message or data along with the status code is by using ```ActionResult&lt;T&gt;```, where ```T``` is a generic type that represents the type of data you want to return.
+**ChatGPT**: Another way you can return a custom message or data along with the status code is by using ```ActionResult<T>```, where ```T``` is a generic type that represents the type of data you want to return.
 For example, you can return a custom object or a list of objects:csharp
 ```csharp
 [HttpGet]
-public ActionResult&lt;MyModel&gt; GetData()
+public ActionResult<MyModel> GetData()
 {
     var data = new MyModel() { message = "Success", value = 123 };
     return Ok(data);
 }
 ```
 
-Additionally, you can use ```ActionResult&lt;T&gt;``` along with ```Task&lt;T&gt;``` to handle async request in your controller methods:csharp
+Additionally, you can use ```ActionResult<T>``` along with ```Task<T>``` to handle async request in your controller methods:csharp
 ```csharp
 [HttpGet]
-public async Task&lt;ActionResult&lt;MyModel&gt;&gt; GetDataAsync()
+public async Task<ActionResult<MyModel>> GetDataAsync()
 {
     var data = await _myService.GetDataAsync();
     return Ok(data);
 }
 ```
 
-Please note that the ```ActionResult&lt;T&gt;``` is available starting from ASP.NET Core 2.1
+Please note that the ```ActionResult<T>``` is available starting from ASP.NET Core 2.1
 
 Lastly, it's always a good practice to return appropriate HTTP status codes, such as using ```200 OK``` for successful requests, ```204 No Content``` when there's no content to return and ```404 Not Found``` when the requested resource could not be found. This is the way you can communicate to clients that your web api is running and working fine.
 

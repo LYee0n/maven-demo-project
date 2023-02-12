@@ -10,7 +10,7 @@ Add the PAT as a secure environment variable in your GitLab project's settings.
 In your ```.gitlab-ci.yml``` file, add a command to log in to npm using the PAT:bash
 ```bash
 npm login --registry=https://registry.npmjs.org/ --scope=@my-scope
-echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" &gt; .npmrc
+echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
 ```
 
 Replace ```@my-scope``` with the scope you want to use and ```NPM_TOKEN``` with the name of the environment variable you created in step 2.

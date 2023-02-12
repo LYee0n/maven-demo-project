@@ -166,7 +166,7 @@ public class CompressFileExample {
       try (FileInputStream fis = new FileInputStream(sourceFile)) {
         byte[] buffer = new byte[1024];
         int length;
-        while ((length = fis.read(buffer)) &gt; 0) {
+        while ((length = fis.read(buffer)) > 0) {
           zos.write(buffer, 0, length);
         }
       }
@@ -246,7 +246,7 @@ public class CompressFileExample {
       zos.putNextEntry(fileToZip);
       byte[] buffer = new byte[1024];
       int length;
-      while ((length = fis.read(buffer)) &gt; 0) {
+      while ((length = fis.read(buffer)) > 0) {
         zos.write(buffer, 0, length);
       }
       zos.closeEntry();
@@ -282,7 +282,7 @@ public class CompressFileExample extends Application {
         try (FileInputStream fis = new FileInputStream(sourceFile)) {
           byte[] buffer = new byte[1024];
           int length;
-          while ((length = fis.read(buffer)) &gt; 0) {
+          while ((length = fis.read(buffer)) > 0) {
             zos.write(buffer, 0, length);
           }
         }
