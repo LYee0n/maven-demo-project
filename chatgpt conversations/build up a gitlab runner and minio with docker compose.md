@@ -28,12 +28,17 @@ volumes:
 
 Replace ```<token>``` with the registration token for your GitLab runner. This file sets up two services, ```runner``` and ```minio```. The ```runner``` service uses the latest GitLab runner image and sets environment variables for the CI server URL, registration token, and runner executor. The ```/var/run/docker.sock``` volume is mounted to allow the runner to execute Docker commands. The ```minio``` service uses the Minio image and sets environment variables for access and secret keys. The ```9000``` port is exposed and a ```data``` volume is created and mounted to persist Minio data.
 
-You can start both services by running the following command in the directory where the ```docker-compose.yml``` file is located:```docker-compose up -d
+You can start both services by running the following command in the directory where the ```docker-compose.yml``` file is located:
+```
+docker-compose up -d
 ```
 
 **You**: continue
 
-**ChatGPT**: To stop and remove the services, you can use the following command:```docker-compose down
+**ChatGPT**: 
+To stop and remove the services, you can use the following command:
+```
+docker-compose down
 ```
 
 To check the logs of a specific service, you can use the following command:php
@@ -41,10 +46,14 @@ To check the logs of a specific service, you can use the following command:php
 docker-compose logs <service-name>
 ```
 
-For example, to check the logs of the ```minio``` service, you can run:```docker-compose logs minio
+For example, to check the logs of the ```minio``` service, you can run:
+```
+docker-compose logs minio
 ```
 
-You can also use the following command to view the status of the services:```docker-compose ps
+You can also use the following command to view the status of the services:
+```
+docker-compose ps
 ```
 
 This will show you the state of each service, including the name, command, and status.
@@ -55,7 +64,9 @@ Note: The above example is just a basic setup and there may be additional config
 
 **ChatGPT**: To register a runner with Minio cache, you will need to configure the runner's ```config.toml``` file to use Minio as a cache. Here's an example of how you could do this:
 
-Start the Minio service using Docker Compose:```docker-compose up -d minio
+Start the Minio service using Docker Compose:
+```
+docker-compose up -d minio
 ```
 
 Obtain the IP address of the Minio container:yaml
