@@ -93,8 +93,12 @@ ENV KEYCLOAK_IMPORT /tmp/realm-config.json
     }
   ]
 }
-```Build the Docker image using the Dockerfile:```docker build -t keycloak .
-```Start the Keycloak container using the image:css
+```
+Build the Docker image using the Dockerfile:
+```
+docker build -t keycloak .
+```
+Start the Keycloak container using the image:css
 ```css
 docker run -p 8080:8080 keycloak
 ```
