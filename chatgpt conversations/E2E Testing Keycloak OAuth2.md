@@ -28,7 +28,8 @@ Here's an example of how you could set up Keycloak in a Docker container:Create 
 FROM jboss/keycloak:11.0.2
 COPY realm-config.json /tmp/
 ENV KEYCLOAK_IMPORT /tmp/realm-config.json
-```Create a ```realm-config.json``` file that contains the configuration for your Keycloak realm, including clients, roles, and users:json
+```
+Create a ```realm-config.json``` file that contains the configuration for your Keycloak realm, including clients, roles, and users:json
 ```json
 {
   "realm": "myrealm",
@@ -93,8 +94,12 @@ ENV KEYCLOAK_IMPORT /tmp/realm-config.json
     }
   ]
 }
-```Build the Docker image using the Dockerfile:```docker build -t keycloak .
-```Start the Keycloak container using the image:css
+```
+Build the Docker image using the Dockerfile:
+```
+docker build -t keycloak .
+```
+Start the Keycloak container using the image:css
 ```css
 docker run -p 8080:8080 keycloak
 ```
