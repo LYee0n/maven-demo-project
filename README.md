@@ -286,3 +286,6 @@ https://cwhu.medium.com/kubernetes-helm-chart-tutorial-fbdad62a8b61
 dd if=/dev/zero of=100MB.test bs=1MB count=100
 
 dd if=/dev/zero of=100MB.test bs=1MB count=2
+
+
+docker run -it -v $PWD:/e2e -w /e2e cypress/included:8.6.0
