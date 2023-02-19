@@ -1,0 +1,92 @@
+{
+  "id": "myrealm",
+  "realm": "myrealm",
+  "enabled": true,
+  "users": [
+    {
+      "id": "user1",
+      "username": "user1",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password1",
+          "temporary": false
+        }
+      ]
+    },
+    {
+      "id": "user2",
+      "username": "user2",
+      "enabled": true,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password2",
+          "temporary": false
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "group1",
+      "name": "group1",
+      "path": "/group1",
+      "subGroups": []
+    },
+    {
+      "id": "group2",
+      "name": "group2",
+      "path": "/group2",
+      "subGroups": []
+    }
+  ],
+  "roles": [
+    {
+      "id": "role1",
+      "name": "role1",
+      "description": "Role 1"
+    },
+    {
+      "id": "role2",
+      "name": "role2",
+      "description": "Role 2"
+    }
+  ],
+  "clientScopes": [
+    {
+      "id": "scope1",
+      "name": "scope1",
+      "description": "Scope 1",
+      "protocol": "openid-connect",
+      "attributes": {}
+    }
+  ],
+  "clients": [
+    {
+      "id": "client1",
+      "clientId": "client1",
+      "enabled": true,
+      "secret": "secret1",
+      "redirectUris": [],
+      "webOrigins": [],
+      "bearerOnly": false,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "attributes": {}
+    },
+    {
+      "id": "client2",
+      "clientId": "client2",
+      "enabled": true,
+      "secret": "secret2",
+      "redirectUris": [],
+      "webOrigins": [],
+      "bearerOnly": false,
+      "publicClient": true,
+      "protocol": "openid-connect",
+      "attributes": {}
+    }
+  ]
+}

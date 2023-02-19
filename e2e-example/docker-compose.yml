@@ -1,0 +1,46 @@
+version: '3'
+services:
+  # backend:
+  #   image: my-app-backend
+  #   ports:
+  #     - 8080:8080
+  # frontend:
+  #   image: my-app-frontend
+  #   ports:
+  #     - 3000:3000
+  # cypress:
+  #   image: cypress/included:5.1.0
+  #   environment:
+  #     CYPRESS_baseUrl: http://frontend:3000
+  #   command: ["cypress", "run", "--browser", "chrome"]
+  #   volumes:
+  #     - ./e2e:/e2e
+  #   depends_on:
+  #     - backend
+  #     - frontend
+  keycloak:
+    image: jboss/keycloak:11.0.2
+    environment:
+      KEYCLOAK_FRONTEND_URL: https://jyasuu-stunning-space-giggle-69rj4q9gwwj3xv46-8080.preview.app.github.dev/auth
+      # KEYCLOAK_IMPORT: /tmp/realm-config.json
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_PORT: 5432
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: keycloak
+    command: " -Dkeycloak.profile.feature.upload_scripts=enabled"
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    # volumes:
+      # - ./realm-config.json:/tmp/realm-config.json
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_DB=keycloak
+      - POSTGRES_USER=keycloak
+      - POSTGRES_PASSWORD=keycloak
