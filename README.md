@@ -44,6 +44,8 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 minikube start
 
+minikube service wordpress-service --url
+
 
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
