@@ -1,4 +1,4 @@
-system.url-prefix: "http://localhost:9000"
+system.url-prefix: "https://jyasuu-glorious-space-garbanzo-x59jv75wv6jhprr-9000.preview.app.github.dev/"
 mail.backend: 'smtp'
 mail.host: 'smtp.gmail.com'
 mail.port: 587
