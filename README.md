@@ -298,3 +298,46 @@ https://github.com/cypress-io/cypress-example-docker-compose
 https://functional.style/cypress/docker-compose/
 
 https://webapp.io/blog/running-cypress-tests-in-parallel-using-docker-compose/
+
+
+Stable Diffusion 1.4
+
+stable_diffusion_webui_colab
+
+https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_webui_colab.ipynb
+
+Stable Diffusion 1.5
+
+stable_diffusion_1_5_webui_colab
+
+https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_1_5_webui_colab.ipynb
+
+Stable Diffusion 1.5 Inpainting
+
+stable_diffusion_inpainting_webui_colab
+
+https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_inpainting_webui_colab.ipynb
+
+Stable Diffusion 2.1
+
+https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_v2_1_webui_colab.ipynb
+
+Stable Diffusion 2.1 Base
+
+https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_v2_1_base_webui_colab.ipynb
+
+Stable Diffusion 2.0
+
+https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_v2_webui_colab.ipynb
+
+Stable Diffusion 2.0 Base
+
+https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_v2_base_webui_colab.ipynb
+
+Stable Diffusion 2.0 Depth
+
+https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_v2_depth_webui_colab.ipynb
+
+Stable Diffusion 2.0 Inpainting
+
+https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_v2_inpainting_webui_colab.ipynb
