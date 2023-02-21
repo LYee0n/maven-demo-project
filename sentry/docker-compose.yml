@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  sentry:
+    image: getsentry/sentry:latest
+    ports:
+      - "9000:9000"
+    environment:
+      SENTRY_SECRET_KEY: v=mxz9a&l0i_g@((c!)y*66jantmwj*m9o!@^m&z8u#sg%!bu1
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: postgres
+      SENTRY_DB_PASSWORD: postgres
+      SENTRY_REDIS_HOST: redis
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./sentry.config.yml:/etc/sentry/sentry.config.yml
+  postgres:
+    image: postgres:9.5
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+  redis:
+    image: redis:5.0-alpine

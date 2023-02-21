@@ -1,0 +1,7 @@
+system.url-prefix: "http://localhost:9000"
+mail.backend: 'smtp'
+mail.host: 'smtp.gmail.com'
+mail.port: 587
+mail.username: 'you@gmail.com'
+mail.password: 'yourpassword'
+mail.use-tls: true
