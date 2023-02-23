@@ -1,0 +1,57 @@
+--------
+**You**: do you know how to enable rabbitmq ssl  build with docker?
+
+--------
+**ChatGPT**: Yes, I can help you with that. Here are the general steps to enable SSL for RabbitMQ using Docker:Create a directory on your local machine to hold the SSL files:shell
+```shell
+$ mkdir rabbitmq-certs
+$ cd rabbitmq-certs
+```Generate a self-signed certificate and key file:csharp
+```csharp
+$ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
+    -keyout rabbitmq.key -out rabbitmq.crt \
+    -subj "/CN=rabbitmq.example.com" \
+    -addext "subjectAltName=DNS:rabbitmq.example.com"
+```
+
+This will create a self-signed certificate and key file in the ```rabbitmq-certs``` directory.Create a Dockerfile in the same directory with the following content:bash
+```bash
+FROM rabbitmq:3.8.22
+
+RUN apt-get update &amp;&amp; apt-get install -y openssl
+
+COPY rabbitmq.conf /etc/rabbitmq/
+COPY rabbitmq.crt /etc/rabbitmq/
+COPY rabbitmq.key /etc/rabbitmq/
+
+RUN chown rabbitmq:rabbitmq /etc/rabbitmq/rabbitmq.*
+RUN chmod 600 /etc/rabbitmq/rabbitmq.key
+
+EXPOSE 5671/tcp
+
+CMD ["rabbitmq-server"]
+```Create a ```rabbitmq.conf``` file in the same directory with the following content:javascript
+```javascript
+listeners.ssl.default = 5671
+
+ssl_options.cacertfile = /etc/rabbitmq/rabbitmq.crt
+ssl_options.certfile   = /etc/rabbitmq/rabbitmq.crt
+ssl_options.keyfile    = /etc/rabbitmq/rabbitmq.key
+
+ssl_options.verify     = verify_peer
+ssl_options.fail_if_no_peer_cert = true
+ssl_options.client_renegotiation = false
+```
+
+This configuration file sets up the SSL listeners and specifies the SSL certificate and key file.Build the Docker image:ruby
+```ruby
+$ docker build -t rabbitmq-ssl .
+```Run the RabbitMQ container using the following command:css
+```css
+$ docker run -d --name rabbitmq-ssl -p 5671:5671 rabbitmq-ssl
+```
+
+This will start the RabbitMQ container with SSL enabled and map port 5671 on the container to port 5671 on the host.
+
+That's it! You should now be able to connect to RabbitMQ using SSL on port 5671.
+
