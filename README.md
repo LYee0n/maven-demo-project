@@ -341,3 +341,13 @@ https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/
 Stable Diffusion 2.0 Inpainting
 
 https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/blob/main/stable_diffusion_v2_inpainting_webui_colab.ipynb
+
+
+
+
+
+wget https://github.com/schemaspy/schemaspy/releases/download/v6.1.0/schemaspy-6.1.0.jar
+wget https://jdbc.postgresql.org/download/postgresql-42.5.4.jar
+
+java -jar schemaspy-6.1.0.jar -t pgsql11  -dp ./postgresql-42.5.4.jar -db postgres -host localhost -port 5432 -s public -u postgres -p postgres -o outputs
+
