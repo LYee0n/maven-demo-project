@@ -349,5 +349,56 @@ https://colab.research.google.com/github/camenduru/stable-diffusion-webui-colab/
 wget https://github.com/schemaspy/schemaspy/releases/download/v6.1.0/schemaspy-6.1.0.jar
 wget https://jdbc.postgresql.org/download/postgresql-42.5.4.jar
 
-java -jar schemaspy-6.1.0.jar -t pgsql11  -dp ./postgresql-42.5.4.jar -db postgres -host localhost -port 5432 -s public -u postgres -p postgres -o outputs
+java -jar schemaspy-6.1.0.jar -t yaml  -dp ./postgresql-42.5.4.jar -db postgres -host localhost -port 5432 -s public -u postgres -p postgres -o outputs
 
+
+pg_dump --schema-only --format=yaml postgres > schema.yaml
+
+
+```yaml
+# https://blog.tocandraw.com/2023/02/28/virtualization/docker/503/timhsu/?fbclid=IwAR2QhL77RUMKwlI7OwNVrSODZCcVlgWGWFnW7eKYfJHf3heqVb3CRYRtez4
+- name: Check docker hub remaining pull limit
+  block:
+      - name: Get temp docker token
+        ansible.builtin.uri:
+            url: https://auth.docker.io/token?service=registry.docker.io&scope=repository:ratelimitpreview/test:pull
+            user: "{{ github_user }}"
+            password: "{{ docker_password }}"
+            method: GET
+            return_content: true
+        register: http_response
+
+      - name: Parse token
+        ansible.builtin.set_fact:
+            temp_docker_token: "{{ http_response.content | from_json | json_query('token') }}"
+
+      - name: Get remaining
+        ansible.builtin.uri:
+            url: https://registry-1.docker.io/v2/ratelimitpreview/test/manifests/latest
+            headers:
+                Authorization: "Bearer {{ temp_docker_token }}"
+            method: GET
+            return_content: true
+        register: http_response_remaining
+
+      - name: Parse remaining
+        ansible.builtin.set_fact:
+            docker_remaining: "{{ http_response_remaining.ratelimit_remaining | split(';') }}"
+
+      - name: Use docker hub
+        ansible.builtin.set_fact:
+            image_owner: "{{ docker_user }}"
+            use_registry: "docker"
+        when: docker_remaining[0] | int > 10
+
+      - name: Use github container registry
+        ansible.builtin.set_fact:
+            image_owner: ghcr.io/toc-taiwan
+            use_registry: "github"
+        when: docker_remaining[0] | int < 10
+
+      - name: Decide registry
+        ansible.builtin.debug:
+            msg: "Use {{ image_owner }}, remaining {{ docker_remaining[0] }}"
+
+```
