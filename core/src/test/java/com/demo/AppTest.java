@@ -14,6 +14,8 @@ import java.sql.Connection;
 import org.snakeyaml.engine.v2.api.*;
 import java.util.HashMap;
 import java.util.Map;
+import com.demo.SchemaGenerator;
+import java.io.File;
 
 /**
  * Unit test for simple App. https://www.jooq.org/javadoc/dev/org.jooq/org/jooq/impl/DSL.html
@@ -146,6 +148,21 @@ public class AppTest
         Dump dump = new Dump(settings2);
         String output = dump.dumpToString(map);
         System.out.println(output);
+
+
+        assertTrue( true );
+    }
+    
+    @Test
+    public void schemaGeneratorDemo() throws Exception
+    {
+        
+        SchemaGenerator generator = new SchemaGenerator();
+        Map<String, Map<String, Object>> schema = generator.generateSchema("jdbc:postgresql://localhost:5432/postgres", "postgres", "postgres");
+
+        File outputFile = new File("schema.yaml");
+        generator.outputYaml(schema, outputFile);
+
 
 
         assertTrue( true );
