@@ -60,3 +60,91 @@ This script stops and removes any existing Watchtower container, then starts a n
 
 After running this script, you can use the ```docker logs``` command to check the Watchtower logs and ensure that it is running correctly. This script can be customized to suit your specific needs and can be executed on a regular schedule using a tool like Cron.
 
+--------
+**You**: I have a practice plan like below and show me executable script for each steps
+1. create demo image 
+2. push this demo image(loop print time)
+3. run this image with watchtower using docker compose
+4. create upgrade demo image
+5. push upgrade demo image
+then watchtower will up-to-date
+
+--------
+**ChatGPT**: Sure, here are executable scripts for each step of your practice plan:Create demo image
+
+Here's an example of a Dockerfile that you can use to create a demo image:bash
+```bash
+FROM alpine:latest
+CMD while true; do echo $(date); sleep 1; done
+```
+
+To build the image, you can use the following script:bash
+```bash
+#!/bin/bash
+
+docker build -t my-registry:5000/demo-image:latest .
+```
+
+This script builds the demo image and tags it with the ```my-registry:5000/demo-image:latest``` repository name.Push demo image
+
+To push the demo image to your private registry, you can use the following script:bash
+```bash
+#!/bin/bash
+
+docker login my-registry:5000
+docker push my-registry:5000/demo-image:latest
+```
+
+This script logs in to your private registry and pushes the demo image to the repository.Run image with Watchtower using Docker Compose
+
+Here's an example of a Docker Compose file that you can use to run the demo image with Watchtower:yaml
+```yaml
+version: '3'
+services:
+  demo:
+    image: my-registry:5000/demo-image:latest
+    restart: always
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --cleanup --label-enable --interval 30 my-registry:5000/demo-image:latest
+    restart: always
+```
+
+To start the containers, you can use the following script:bash
+```bash
+#!/bin/bash
+
+docker-compose up -d
+```
+
+This script starts the demo and Watchtower containers in detached mode.Create upgrade demo image
+
+Here's an example of a Dockerfile that you can use to create an upgraded demo image:bash
+```bash
+FROM alpine:latest
+CMD while true; do echo $(date) "Upgraded!"; sleep 1; done
+```
+
+To build the upgraded image, you can use the following script:bash
+```bash
+#!/bin/bash
+
+docker build -t my-registry:5000/demo-image:latest .
+```
+
+This script rebuilds the demo image with the upgraded Dockerfile and tags it with the ```my-registry:5000/demo-image:latest``` repository name.Push upgrade demo image
+
+To push the upgraded demo image to your private registry, you can use the following script:bash
+```bash
+#!/bin/bash
+
+docker login my-registry:5000
+docker push my-registry:5000/demo-image:latest
+```
+
+This script logs in to your private registry and pushes the upgraded demo image to the repository.
+
+Once the upgraded image is pushed to the registry, Watchtower will automatically detect the new version and update the running container. You can verify that the update was successful by checking the Watchtower logs or running ```docker ps``` to see the running containers.
+
