@@ -402,3 +402,7 @@ pg_dump --schema-only --format=yaml postgres > schema.yaml
             msg: "Use {{ image_owner }}, remaining {{ docker_remaining[0] }}"
 
 ```
+
+https://blog.wu-boy.com/2023/02/automating-docker-container-base-image-updates-cht/?fbclid=IwAR3QyVzKhmQr_G9tcXqRbAZR20-r262eTZKV0hCPoIHSuUULo3bU64_nWuU
+
+https://github.com/containrrr/watchtower
