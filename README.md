@@ -406,3 +406,14 @@ pg_dump --schema-only --format=yaml postgres > schema.yaml
 https://blog.wu-boy.com/2023/02/automating-docker-container-base-image-updates-cht/?fbclid=IwAR3QyVzKhmQr_G9tcXqRbAZR20-r262eTZKV0hCPoIHSuUULo3bU64_nWuU
 
 https://github.com/containrrr/watchtower
+
+
+
+
+https://tw.coderbridge.com/series/7bc8a0e872fd4ca9b9c49032cc0de0d6/posts/3e0cb19b020e4716b25a7ed30fe047f2
+
+https://medium.com/starbugs/%E5%AF%86%E7%A2%BC%E9%83%BD%E6%94%BE-vault-%E8%A3%A1%E4%BA%86-%E7%84%B6%E5%BE%8C%E5%91%A2-97c7832d59f
+
+https://www.readfog.com/a/1676022748967702528
+
+https://thiscute.world/posts/experience-of-vault/
