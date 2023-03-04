@@ -424,3 +424,9 @@ https://developer.hashicorp.com/vault/docs/platform/k8s/injector/examples
 https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-sidecar
 https://developer.hashicorp.com/vault/docs/platform/k8s/helm/run
 https://developer.hashicorp.com/vault/docs/platform/k8s/injector
+
+
+
+stable diffusion tags
+
+https://tags.novelai.dev/
