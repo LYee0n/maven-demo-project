@@ -416,4 +416,11 @@ https://medium.com/starbugs/%E5%AF%86%E7%A2%BC%E9%83%BD%E6%94%BE-vault-%E8%A3%A1
 
 https://www.readfog.com/a/1676022748967702528
 
+vault k8s injection 
+
+
 https://thiscute.world/posts/experience-of-vault/
+https://developer.hashicorp.com/vault/docs/platform/k8s/injector/examples
+https://developer.hashicorp.com/vault/tutorials/kubernetes/kubernetes-sidecar
+https://developer.hashicorp.com/vault/docs/platform/k8s/helm/run
+https://developer.hashicorp.com/vault/docs/platform/k8s/injector
