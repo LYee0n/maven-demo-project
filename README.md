@@ -430,3 +430,35 @@ https://developer.hashicorp.com/vault/docs/platform/k8s/injector
 stable diffusion tags
 
 https://tags.novelai.dev/
+
+
+
+try ansible vault
+
+https://docs.ansible.com/ansible/latest/collections/community/hashi_vault/vault_read_module.html
+
+
+```yaml
+- name: Read a kv2 secret from Vault via the remote host with userpass auth
+  community.hashi_vault.vault_read:
+    url: https://vault:8201
+    path: secret/data/hello
+    auth_method: userpass
+    username: user
+    password: '{{ passwd }}'
+  register: secret
+
+- name: Display the secret data
+  ansible.builtin.debug:
+    msg: "{{ secret.data.data.data }}"
+
+- name: Retrieve an approle role ID from Vault via the remote host
+  community.hashi_vault.vault_read:
+    url: https://vault:8201
+    path: auth/approle/role/role-name/role-id
+  register: approle_id
+
+- name: Display the role ID
+  ansible.builtin.debug:
+    msg: "{{ approle_id.data.data.role_id }}"
+```
