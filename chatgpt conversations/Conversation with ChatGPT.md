@@ -45,23 +45,23 @@ Overall, gRPC provides several advantages such as efficient communication, suppo
 --------
 **ChatGPT**: Sure, here's an example of how to implement a gRPC server and client in a Java Maven project:First, you need to add the gRPC dependencies to your Maven project's ```pom.xml``` file:xml
 ```xml
-&lt;dependency&gt;
-    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
-    &lt;artifactId&gt;grpc-netty-shaded&lt;/artifactId&gt;
-    &lt;version&gt;1.41.0&lt;/version&gt;
-&lt;/dependency&gt;
+<dependency>
+    <groupId>io.grpc</groupId>
+    <artifactId>grpc-netty-shaded</artifactId>
+    <version>1.41.0</version>
+</dependency>
 
-&lt;dependency&gt;
-    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
-    &lt;artifactId&gt;grpc-protobuf&lt;/artifactId&gt;
-    &lt;version&gt;1.41.0&lt;/version&gt;
-&lt;/dependency&gt;
+<dependency>
+    <groupId>io.grpc</groupId>
+    <artifactId>grpc-protobuf</artifactId>
+    <version>1.41.0</version>
+</dependency>
 
-&lt;dependency&gt;
-    &lt;groupId&gt;io.grpc&lt;/groupId&gt;
-    &lt;artifactId&gt;grpc-stub&lt;/artifactId&gt;
-    &lt;version&gt;1.41.0&lt;/version&gt;
-&lt;/dependency&gt;
+<dependency>
+    <groupId>io.grpc</groupId>
+    <artifactId>grpc-stub</artifactId>
+    <version>1.41.0</version>
+</dependency>
 ```Next, you need to define the protobuf message and service in a ```.proto``` file. Here's an example:protobuf
 ```protobuf
 syntax = "proto3";
@@ -94,7 +94,7 @@ import io.grpc.stub.StreamObserver;
 
 public class HelloWorldServiceImpl extends HelloWorldServiceGrpc.HelloWorldServiceImplBase {
     @Override
-    public void sayHello(HelloRequest request, StreamObserver&lt;HelloResponse&gt; responseObserver) {
+    public void sayHello(HelloRequest request, StreamObserver<HelloResponse> responseObserver) {
         String name = request.getName();
         String message = "Hello, " + name + "!";
         HelloResponse response = HelloResponse.newBuilder().setMessage(message).build();
