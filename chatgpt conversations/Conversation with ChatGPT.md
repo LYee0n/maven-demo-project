@@ -62,7 +62,9 @@ Overall, gRPC provides several advantages such as efficient communication, suppo
     <artifactId>grpc-stub</artifactId>
     <version>1.41.0</version>
 </dependency>
-```Next, you need to define the protobuf message and service in a ```.proto``` file. Here's an example:protobuf
+```
+
+Next, you need to define the protobuf message and service in a ```.proto``` file. Here's an example:protobuf
 ```protobuf
 syntax = "proto3";
 
@@ -83,10 +85,14 @@ message HelloResponse {
 service HelloWorldService {
     rpc sayHello (HelloRequest) returns (HelloResponse);
 }
-```Run the following command to generate Java code from the ```.proto``` file:css
+```
+
+Run the following command to generate Java code from the ```.proto``` file:css
 ```css
 $ protoc --java_out=src/main/java hello.proto
-```Implement the gRPC server by defining the ```HelloWorldServiceImpl``` class that implements the ```HelloWorldService``` service:java
+```
+
+Implement the gRPC server by defining the ```HelloWorldServiceImpl``` class that implements the ```HelloWorldService``` service:java
 ```java
 package com.example.grpcdemo;
 
@@ -102,7 +108,9 @@ public class HelloWorldServiceImpl extends HelloWorldServiceGrpc.HelloWorldServi
         responseObserver.onCompleted();
     }
 }
-```Start the gRPC server by creating a ```Server``` instance and binding it to a port:java
+```
+
+Start the gRPC server by creating a ```Server``` instance and binding it to a port:java
 ```java
 package com.example.grpcdemo;
 
@@ -119,7 +127,9 @@ public class GrpcServer {
         server.awaitTermination();
     }
 }
-```Implement the gRPC client by creating a ```ManagedChannel``` instance and calling the ```HelloWorldService``` service:java
+```
+
+Implement the gRPC client by creating a ```ManagedChannel``` instance and calling the ```HelloWorldService``` service:java
 ```java
 package com.example.grpcdemo;
 
@@ -148,7 +158,9 @@ That's it! This is a basic example of how to implement a gRPC server and client 
 ```shell
 $ brew install protobuf
 $ go get google.golang.org/protobuf/cmd/protoc-gen-go
-```Define the protobuf message and service in a ```.proto``` file. Here's an example:protobuf
+```
+
+Define the protobuf message and service in a ```.proto``` file. Here's an example:protobuf
 ```protobuf
 syntax = "proto3";
 
@@ -167,10 +179,14 @@ message HelloReply {
 service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply);
 }
-```Run the following command to generate Go code from the ```.proto``` file:css
+```
+
+Run the following command to generate Go code from the ```.proto``` file:css
 ```css
 $ protoc --go_out=plugins=grpc:. helloworld.proto
-```Implement the gRPC server by defining the ```server``` function that implements the ```GreeterServer``` interface:go
+```
+
+Implement the gRPC server by defining the ```server``` function that implements the ```GreeterServer``` interface:go
 ```go
 package main
 
@@ -204,7 +220,9 @@ func main() {
 		log.Fatalf("failed to serve: %v", err)
 	}
 }
-```Implement the gRPC client by creating a ```grpc.Dial``` connection and calling the ```SayHello``` method:go
+```
+
+Implement the gRPC client by creating a ```grpc.Dial``` connection and calling the ```SayHello``` method:go
 ```go
 package main
 
@@ -246,13 +264,19 @@ Install the ```protoc``` compiler and the ```protoc-gen-go``` plugin as shown in
 Install ```grpcurl```:ruby
 ```ruby
 $ brew install grpcurl
-```Run the following command to get the list of available services and methods:ruby
+```
+
+Run the following command to get the list of available services and methods:ruby
 ```ruby
 $ grpcurl -plaintext localhost:50051 list
-```Run the following command to get the details of a specific method:ruby
+```
+
+Run the following command to get the details of a specific method:ruby
 ```ruby
 $ grpcurl -plaintext localhost:50051 describe helloworld.Greeter/SayHello
-```Run the following command to send a request to the ```SayHello``` method:json
+```
+
+Run the following command to send a request to the ```SayHello``` method:json
 ```json
 $ grpcurl -plaintext -d '{"name": "Alice"}' localhost:50051 helloworld.Greeter/SayHello
 ```
