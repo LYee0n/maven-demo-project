@@ -40,4 +40,11 @@ kubectl delete pod nginx-pod
 kubectl delete -f nginx.yaml
 # pod "nginx-pod" deleted
 
+kubectl apply -f hellok8s.yaml
+
+kubectl get pods
+
+kubectl port-forward hellok8s 3000:3000
+
 ```
+
