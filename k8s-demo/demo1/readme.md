@@ -130,5 +130,29 @@ kubectl describe pod hellok8s-68f47f657c-zwn6g
 #  Normal   Killing    11m (x3 over 12m)     kubelet            Container hellok8s-container failed liveness probe, will be restarted
 #  Warning  Unhealthy  11m (x10 over 12m)    kubelet            Liveness probe failed: HTTP probe failed with statuscode: 500
 #  Warning  BackOff    2m41s (x36 over 10m)  kubelet            Back-off restarting failed container
+
+docker build . -t jyasu/hellok8s:bad
+
+docker push jyasu/hellok8s:bad
+
+kubectl apply -f deployment.yaml
+
+kubectl get pods                
+# NAME                                   READY   STATUS    RESTARTS   AGE
+# hellok8s-deployment-66799848c4-8xzsz   1/1     Running   0          102s
+# hellok8s-deployment-66799848c4-m9dl5   1/1     Running   0          102s
+# hellok8s-deployment-9c57c7f56-rww7k    0/1     Running   0          26s
+# hellok8s-deployment-9c57c7f56-xt9tw    0/1     Running   0          26s
+
+
+kubectl describe pod hellok8s-deployment-9c57c7f56-rww7k
+# Events:
+#   Type     Reason     Age                From               Message
+#   ----     ------     ----               ----               -------
+#   Normal   Scheduled  74s                default-scheduler  Successfully assigned default/hellok8s-deployment-9c57c7f56-rww7k to minikube
+#   Normal   Pulled     73s                kubelet            Container image "guangzhengli/hellok8s:bad" already present on machine
+#   Normal   Created    73s                kubelet            Created container hellok8s-container
+#   Normal   Started    73s                kubelet            Started container hellok8s-container
+#   Warning  Unhealthy  0s (x10 over 72s)  kubelet            Readiness probe failed: HTTP probe failed with statuscode: 500
 ```
 
