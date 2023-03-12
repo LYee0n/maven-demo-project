@@ -101,5 +101,34 @@ kubectl rollout history deployment hellok8s-deployment
 kubectl rollout undo deployment/hellok8s-deployment --to-revision=2
 
 kubectl apply -f deployment.yaml
+
+
+docker build . -t jyasu/hellok8s:liveness
+docker push jyasu/hellok8s:liveness
+
+
+kubectl apply -f deployment.yaml
+
+kubectl get pods
+# NAME                                   READY   STATUS    RESTARTS     AGE
+# hellok8s-deployment-5995ff9447-d5fbz   1/1     Running   4 (6s ago)   102s
+# hellok8s-deployment-5995ff9447-gz2cx   1/1     Running   4 (5s ago)   101s
+# hellok8s-deployment-5995ff9447-rh29x   1/1     Running   4 (6s ago)   102s
+
+kubectl describe pod hellok8s-68f47f657c-zwn6g
+
+# ...
+# ...
+# ...
+# Events:
+#  Type     Reason     Age                   From               Message
+#  ----     ------     ----                  ----               -------
+#  Normal   Scheduled  12m                   default-scheduler  Successfully assigned default/hellok8s-deployment-5995ff9447-rh29x to minikube
+#  Normal   Pulled     11m (x4 over 12m)     kubelet            Container image "guangzhengli/hellok8s:liveness" already present on machine
+#  Normal   Created    11m (x4 over 12m)     kubelet            Created container hellok8s-container
+#  Normal   Started    11m (x4 over 12m)     kubelet            Started container hellok8s-container
+#  Normal   Killing    11m (x3 over 12m)     kubelet            Container hellok8s-container failed liveness probe, will be restarted
+#  Warning  Unhealthy  11m (x10 over 12m)    kubelet            Liveness probe failed: HTTP probe failed with statuscode: 500
+#  Warning  BackOff    2m41s (x36 over 10m)  kubelet            Back-off restarting failed container
 ```
 
