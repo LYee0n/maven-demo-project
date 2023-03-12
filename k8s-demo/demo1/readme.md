@@ -52,6 +52,8 @@ kubectl get deployments
 #NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
 #hellok8s-deployment   1/1     1            1           39s
 
+kubectl get pods --watch
+
 kubectl get pods             
 #NAME                                   READY   STATUS    RESTARTS   AGE
 #hellok8s-deployment-77bffb88c5-qlxss   1/1     Running   0          119s
