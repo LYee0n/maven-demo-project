@@ -154,5 +154,46 @@ kubectl describe pod hellok8s-deployment-9c57c7f56-rww7k
 #   Normal   Created    73s                kubelet            Created container hellok8s-container
 #   Normal   Started    73s                kubelet            Started container hellok8s-container
 #   Warning  Unhealthy  0s (x10 over 72s)  kubelet            Readiness probe failed: HTTP probe failed with statuscode: 500
+
+
+docker build . -t jyasu/hellok8s:v3
+
+docker push jyasu/hellok8s:v3
+
+kubectl apply -f deployment.yaml
+
+kubectl apply -f service-hellok8s-clusterip.yaml
+
+kubectl get endpoints
+# NAME                         ENDPOINTS                                          AGE
+# service-hellok8s-clusterip   172.17.0.10:3000,172.17.0.2:3000,172.17.0.3:3000   10s
+
+kubectl get pod -o wide
+# NAME                                   READY   STATUS    RESTARTS   AGE    IP           NODE 
+# hellok8s-deployment-5d5545b69c-24lw5   1/1     Running   0          112s   172.17.0.7   minikube 
+# hellok8s-deployment-5d5545b69c-9g94t   1/1     Running   0          112s   172.17.0.3   minikube
+# hellok8s-deployment-5d5545b69c-9gm8r   1/1     Running   0          112s   172.17.0.2   minikube
+# nginx                                  1/1     Running   0          112s   172.17.0.9   minikube
+
+kubectl get service
+# NAME                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+# service-hellok8s-clusterip   ClusterIP   10.104.96.153   <none>        3000/TCP   10s
+
+kubectl get pods
+# NAME                                   READY   STATUS    RESTARTS   AGE
+# hellok8s-deployment-5d5545b69c-24lw5   1/1     Running   0          27m
+# hellok8s-deployment-5d5545b69c-9g94t   1/1     Running   0          27m
+# hellok8s-deployment-5d5545b69c-9gm8r   1/1     Running   0          27m
+# nginx                                  1/1     Running   0          41m
+
+kubectl get service
+# NAME                         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+# service-hellok8s-clusterip   ClusterIP   10.104.96.153   <none>        3000/TCP   10s
+
+kubectl exec -it nginx-pod /bin/bash
+# root@nginx-pod:/# curl 10.104.96.153:3000
+# [v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-9gm8r
+# root@nginx-pod:/# curl 10.104.96.153:3000
+#[v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-9g94t
 ```
 
