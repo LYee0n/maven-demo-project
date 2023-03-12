@@ -30,4 +30,14 @@ echo "hello kubernetes by nginx!" > /usr/share/nginx/html/index.html
 
 kubectl port-forward nginx-pod 4000:80
 
+kubectl logs -f nginx-pod
+                              
+kubectl exec nginx-pod -- ls
+
+kubectl delete pod nginx-pod
+# pod "nginx-pod" deleted
+
+kubectl delete -f nginx.yaml
+# pod "nginx-pod" deleted
+
 ```
