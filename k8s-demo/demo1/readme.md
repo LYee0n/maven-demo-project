@@ -423,5 +423,10 @@ tree hello-helm
 # │       └── test-connection.yaml
 # └── values.yaml
 
+
+docker build . -t jyasu/hellok8s:v6
+
+docker push jyasu/hellok8s:v6
+
 ```
 
