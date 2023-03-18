@@ -473,5 +473,27 @@ helm ls
 
 curl http://$(minikube ip)/hello
 # [v6] Hello, Helm! Message from helm values: It works with Helm Values!, From namespace: default, From host: hellok8s-deployment-57d7df7964-482xw, Get Database Connect URL: http://DB_ADDRESS_DEFAULT, Database Connect Password: db_password
+
+
+helm upgrade --install hello-helm -f values.yaml -f values-dev.yaml -n dev .
+
+# Release "hello-helm" does not exist. Installing it now.
+# NAME: hello-helm
+# NAMESPACE: dev
+# STATUS: deployed
+# REVISION: 1
+
+curl http://192.168.59.100/hello
+# [v6] Hello, Helm! Message from helm values: It works with Helm Values values-dev.yaml!, From namespace: dev, From host: hellok8s-deployment-f5fff9df-89sn6, Get Database Connect URL: http://DB_ADDRESS_DEV, Database Connect Password: db_password_dev
+
+kubectl get pods -n dev
+# NAME                                 READY   STATUS    RESTARTS   AGE
+# hellok8s-deployment-f5fff9df-89sn6   1/1     Running   0          4m23s
+# hellok8s-deployment-f5fff9df-tkh6g   1/1     Running   0          4m23s
+# hellok8s-deployment-f5fff9df-wmlpb   1/1     Running   0          4m23s
+# nginx-deployment-d47fd7f66-cdlmf     1/1     Running   0          4m23s
+# nginx-deployment-d47fd7f66-cgst2     1/1     Running   0          4m23s
+
+helm upgrade --install hello-helm -f values.yaml -f values-dev.yaml --set application.hellok8s.message="It works with set helm values" -n dev .
 ```
 
