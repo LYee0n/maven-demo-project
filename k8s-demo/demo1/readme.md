@@ -402,5 +402,26 @@ kubectl get secret
 
 curl http://$(minikube ip)/hello
 # [v6] Hello, Helm! Message from helm values: It works with Helm Values[v2]!, From namespace: default, From host: hellok8s-deployment-598bbd6884-ttk78, Get Database Connect URL: http://DB_ADDRESS_DEFAULT, Database Connect Password: db_password
+
+helm uninstall my-hello-helm
+
+
+helm create hello-helm
+tree hello-helm
+# hello-helm
+# ├── Chart.yaml
+# ├── charts
+# ├── templates
+# │   ├── NOTES.txt
+# │   ├── _helpers.tpl
+# │   ├── deployment.yaml
+# │   ├── hpa.yaml
+# │   ├── ingress.yaml
+# │   ├── service.yaml
+# │   ├── serviceaccount.yaml
+# │   └── tests
+# │       └── test-connection.yaml
+# └── values.yaml
+
 ```
 
