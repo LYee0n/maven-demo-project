@@ -196,7 +196,7 @@ kubectl exec -it nginx-pod /bin/bash
 # root@nginx-pod:/# curl 10.104.96.153:3000
 #[v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-9g94t
 
-kubectl apply -f service-hellok8s-nodeport.yaml
+kubectl apply -f service-hellok8s-nodeport.yaml
 
 kubectl get service
 # NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
@@ -213,5 +213,7 @@ curl http://192.168.59.100:30000
 
 curl http://192.168.59.100:30000
 # [v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-24lw5
+
+curl http://$(minikube ip):30000
 ```
 
