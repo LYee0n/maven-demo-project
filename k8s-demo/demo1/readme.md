@@ -306,5 +306,21 @@ kubectl port-forward hellok8s-pod 3000:3000 -n test
 curl http://localhost:3000
 # [v4] Hello, Kubernetes! From host: hellok8s-pod, Get Database Connect URL: http://DB_ADDRESS_TEST
 
+echo "db_password" | base64
+# ZGJfcGFzc3dvcmQK
+
+echo "ZGJfcGFzc3dvcmQK" | base64 -d
+# db_password
+
+
+docker build . -t jyasu/hellok8s:v5
+
+docker push jyasu/hellok8s:v5
+
+kubectl apply -f hellok8s-secret.yaml
+
+kubectl apply -f hellok8s.yaml
+
+kubectl port-forward hellok8s-pod 3000:3000
 ```
 
