@@ -343,5 +343,7 @@ kubectl logs -f hello-job--1-5gjjr
 # ...
 
 kubectl delete -f hello-job.yaml
+
+kubectl describe pod hello-job-2wz67
 ```
 

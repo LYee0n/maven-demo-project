@@ -11,4 +11,8 @@ spec:
       containers:
         - name: echo
           image: busybox
-          command: [for i in 9 8 7 6 5 4 3 2 1 ; do echo $i ; done]
+          command: 
+            - /bin/sh
+            - -c
+            - | 
+              for i in 9 8 7 6 5 4 3 2 1 ; do echo $i ; done
