@@ -215,5 +215,44 @@ curl http://192.168.59.100:30000
 # [v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-24lw5
 
 curl http://$(minikube ip):30000
+
+minikube addons enable ingress
+
+kubectl delete deployment,service --all
+
+kubectl apply -f hellok8s.yaml                 
+# service/service-hellok8s-clusterip created
+# deployment.apps/hellok8s-deployment created
+
+kubectl apply -f nginx.yaml   
+# service/service-nginx-clusterip created
+# deployment.apps/nginx-deployment created
+
+kubectl get pods            
+# NAME                                   READY   STATUS    RESTARTS   AGE
+# hellok8s-deployment-5d5545b69c-4wvmf   1/1     Running   0          55s
+# hellok8s-deployment-5d5545b69c-qcszp   1/1     Running   0          55s
+# hellok8s-deployment-5d5545b69c-sn7mn   1/1     Running   0          55s
+# nginx-deployment-d47fd7f66-d9r7x       1/1     Running   0          34s
+# nginx-deployment-d47fd7f66-hp5nf       1/1     Running   0          34s
+
+kubectl get service
+# NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+# service-hellok8s-clusterip   ClusterIP   10.97.88.18      <none>        3000/TCP   77s
+# service-nginx-clusterip      ClusterIP   10.103.161.247   <none>        4000/TCP   56s
+
+kubectl apply -f ingress.yaml
+# ingress.extensions/hello-ingress created
+
+kubectl get ingress          
+# NAME            CLASS   HOSTS   ADDRESS   PORTS   AGE
+# hello-ingress   nginx   *                 80      16s
+
+# replace 192.168.59.100 by your minikube ip
+curl http://$(minikube ip)/hello
+# [v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-sn7mn
+
+curl http://$(minikube ip)/
+# (....Thank you for using nginx.....)
 ```
 
