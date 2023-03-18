@@ -447,6 +447,31 @@ kubectl get pods
 # nginx-deployment-d47fd7f66-6w76b      1/1     Running   0          32m
 # nginx-deployment-d47fd7f66-tsqj5      1/1     Running   0          32m
 
+➜  helm upgrade --install hello-helm --values values.yaml .
+# Release "hello-helm" has been upgraded. Happy Helming!
+# NAME: hello-helm
+# LAST DEPLOYED: Sat Mar 18 05:44:29 2023
+# NAMESPACE: default
+# STATUS: deployed
+# REVISION: 2
+# TEST SUITE: None
 
+curl http://$(minikube ip)/hello
+# [v6] Hello, Helm! Message from helm values: It works with Helm Values[v2]!, From namespace: default, From host: hellok8s-deployment-598bbd6884-4b9bw, Get Database Connect URL: http://DB_ADDRESS_DEFAULT, Database Connect Password: db_password
+
+
+helm ls
+# NAME            NAMESPACE       REVISION          STATUS          CHART                   APP VERSION
+# hello-helm      default         2                 deployed        hello-helm-0.1.0        1.16.0 
+
+helm rollback hello-helm 1
+# Rollback was a success! Happy Helming!
+
+helm ls
+# NAME            NAMESPACE       REVISION          STATUS          CHART                   APP VERSION
+# hello-helm      default         3                 deployed        hello-helm-0.1.0        1.16.0 
+
+curl http://$(minikube ip)/hello
+# [v6] Hello, Helm! Message from helm values: It works with Helm Values!, From namespace: default, From host: hellok8s-deployment-57d7df7964-482xw, Get Database Connect URL: http://DB_ADDRESS_DEFAULT, Database Connect Password: db_password
 ```
 
