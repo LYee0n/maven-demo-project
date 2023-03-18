@@ -428,5 +428,25 @@ docker build . -t jyasu/hellok8s:v6
 
 docker push jyasu/hellok8s:v6
 
+
+helm upgrade --install hello-helm --values values.yaml .
+# Release "hello-helm" does not exist. Installing it now.
+# NAME: hello-helm
+# NAMESPACE: default
+# STATUS: deployed
+# REVISION: 1
+
+curl http://$(minikube ip)/hello
+# [v6] Hello, Helm! Message from helm values: It works with Helm Values!, From namespace: default, From host: hellok8s-deployment-57d7df7964-m6gcc, Get Database Connect URL: http://DB_ADDRESS_DEFAULT, Database Connect Password: db_password
+
+kubectl get pods
+# NAME                                  READY   STATUS    RESTARTS   AGE
+# hellok8s-deployment-f88f984c6-k8hpz   1/1     Running   0          32m
+# hellok8s-deployment-f88f984c6-nzwg6   1/1     Running   0          32m
+# hellok8s-deployment-f88f984c6-s89s7   1/1     Running   0          32m
+# nginx-deployment-d47fd7f66-6w76b      1/1     Running   0          32m
+# nginx-deployment-d47fd7f66-tsqj5      1/1     Running   0          32m
+
+
 ```
 
