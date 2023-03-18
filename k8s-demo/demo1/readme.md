@@ -254,5 +254,24 @@ curl http://$(minikube ip)/hello
 
 curl http://$(minikube ip)/
 # (....Thank you for using nginx.....)
+
+kubectl apply -f namespaces.yaml    
+# namespace/dev created
+# namespace/test created
+
+
+kubectl get namespaces          
+# NAME              STATUS   AGE
+# default           Active   215d
+# dev               Active   2m44s
+# ingress-nginx     Active   110d
+# kube-node-lease   Active   215d
+# kube-public       Active   215d
+# kube-system       Active   215d
+# test              Active   2m44s
+
+kubectl apply -f deployment.yaml -n dev
+
+kubectl get pods -n dev
 ```
 
