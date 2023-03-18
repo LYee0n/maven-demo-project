@@ -345,5 +345,17 @@ kubectl logs -f hello-job--1-5gjjr
 kubectl delete -f hello-job.yaml
 
 kubectl describe pod hello-job-2wz67
+
+
+kubectl apply -f hello-cronjob.yaml
+# cronjob.batch/hello-cronjob created
+
+kubectl get cronjob                
+# NAME            SCHEDULE    SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+# hello-cronjob   * * * * *   False     0        <none>          8s
+
+kubectl get pods   
+# NAME                                   READY   STATUS      RESTARTS   AGE
+# hello-cronjob-27694609--1-2nmdx        0/1     Completed   0          15s
 ```
 
