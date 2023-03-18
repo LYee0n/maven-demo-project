@@ -195,5 +195,23 @@ kubectl exec -it nginx-pod /bin/bash
 # [v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-9gm8r
 # root@nginx-pod:/# curl 10.104.96.153:3000
 #[v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-9g94t
+
+kubectl apply -f service-hellok8s-nodeport.yaml
+
+kubectl get service
+# NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+# service-hellok8s-nodeport    NodePort    10.109.188.161   <none>        3000:30000/TCP   28s
+
+kubectl get pods
+# NAME                                   READY   STATUS    RESTARTS   AGE
+# hellok8s-deployment-5d5545b69c-24lw5   1/1     Running   0          27m
+# hellok8s-deployment-5d5545b69c-9g94t   1/1     Running   0          27m
+# hellok8s-deployment-5d5545b69c-9gm8r   1/1     Running   0          27m
+
+curl http://192.168.59.100:30000
+# [v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-9g94t
+
+curl http://192.168.59.100:30000
+# [v3] Hello, Kubernetes!, From host: hellok8s-deployment-5d5545b69c-24lw5
 ```
 
