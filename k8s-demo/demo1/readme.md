@@ -495,5 +495,13 @@ kubectl get pods -n dev
 # nginx-deployment-d47fd7f66-cgst2     1/1     Running   0          4m23s
 
 helm upgrade --install hello-helm -f values.yaml -f values-dev.yaml --set application.hellok8s.message="It works with set helm values" -n dev .
+
+
+helm package hello-helm
+# Successfully packaged chart and saved it to: /Users/guangzheng.li/workspace/k8s-tutorials/hello-helm/hello-helm-0.1.0.tgz
+
+helm repo index .
+
+helm upgrade --install hello-helm hello-helm-0.1.0.tgz
 ```
 
