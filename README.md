@@ -462,3 +462,20 @@ https://docs.ansible.com/ansible/latest/collections/community/hashi_vault/vault_
   ansible.builtin.debug:
     msg: "{{ approle_id.data.data.role_id }}"
 ```
+
+
+
+install ngrok
+
+```sh
+curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null && echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list && sudo apt update && sudo apt install ngrok
+```
+
+ngrok http 5134
+
+https://timberwolf-mastiff-9776.twil.io/demo-reply
+
+curl http://localhost:5134/Twilio -X POST \
+--data-urlencode 'To=whatsapp:+886912562697' \
+--data-urlencode 'From=whatsapp:+14155238886' \
+--data-urlencode 'Body=Your appointment is coming up on July 21 at 3PM'
