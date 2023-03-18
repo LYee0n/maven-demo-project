@@ -357,5 +357,50 @@ kubectl get cronjob
 kubectl get pods   
 # NAME                                   READY   STATUS      RESTARTS   AGE
 # hello-cronjob-27694609--1-2nmdx        0/1     Completed   0          15s
+
+helm repo add hellok8s https://guangzhengli.github.io/k8s-tutorials/
+# "hellok8s" has been added to your repositories
+
+helm install my-hello-helm hellok8s/hello-helm --version 0.1.0
+# NAME: my-hello-helm
+# NAMESPACE: default
+# STATUS: deployed
+# REVISION: 1
+
+
+kubectl get pods
+# NAME                                  READY   STATUS    RESTARTS   AGE
+# hellok8s-deployment-f88f984c6-k8hpz   1/1     Running   0          15h
+# hellok8s-deployment-f88f984c6-nzwg6   1/1     Running   0          15h
+# hellok8s-deployment-f88f984c6-s89s7   1/1     Running   0          15h
+# nginx-deployment-d47fd7f66-6w76b      1/1     Running   0          15h
+# nginx-deployment-d47fd7f66-tsqj5      1/1     Running   0          15h
+
+kubectl get deployments
+# NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+# hellok8s-deployment   3/3     3            3           15h
+# nginx-deployment      2/2     2            2           15h
+
+kubectl get service
+# NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+# kubernetes                   ClusterIP   10.96.0.1        <none>        443/TCP    13d
+# service-hellok8s-clusterip   ClusterIP   10.107.198.175   <none>        3000/TCP   15h
+# service-nginx-clusterip      ClusterIP   10.100.144.49    <none>        4000/TCP   15h
+
+kubectl get ingress
+# NAME               CLASS   HOSTS   ADDRESS     PORTS   AGE
+# hellok8s-ingress   nginx   *       localhost   80      15h
+
+kubectl get configmap
+# NAME               DATA   AGE
+# hellok8s-config    1      15h
+
+kubectl get secret
+# NAME                                  TYPE                                  DATA   AGE
+# hellok8s-secret                       Opaque                                1      15h
+# sh.helm.release.v1.my-hello-helm.v1   helm.sh/release.v1
+
+curl http://$(minikube ip)/hello
+# [v6] Hello, Helm! Message from helm values: It works with Helm Values[v2]!, From namespace: default, From host: hellok8s-deployment-598bbd6884-ttk78, Get Database Connect URL: http://DB_ADDRESS_DEFAULT, Database Connect Password: db_password
 ```
 
