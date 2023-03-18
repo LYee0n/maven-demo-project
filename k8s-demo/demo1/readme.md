@@ -322,5 +322,26 @@ kubectl apply -f hellok8s-secret.yaml
 kubectl apply -f hellok8s.yaml
 
 kubectl port-forward hellok8s-pod 3000:3000
+
+
+kubectl apply -f hello-job.yaml
+
+kubectl get jobs                  
+# NAME        COMPLETIONS   DURATION   AGE
+# hello-job   5/5           19s        83s
+
+kubectl get pods                      
+# NAME                                   READY   STATUS      RESTARTS   AGE
+# hello-job--1-5gjjr                     0/1     Completed   0          34s
+# hello-job--1-8ffmn                     0/1     Completed   0          26s
+# hello-job--1-ltsvm                     0/1     Completed   0          34s
+# hello-job--1-mttwv                     0/1     Completed   0          29s
+# hello-job--1-ww2qp                     0/1     Completed   0          34s
+
+kubectl logs -f hello-job--1-5gjjr 
+# 1
+# ...
+
+kubectl delete -f hello-job.yaml
 ```
 
