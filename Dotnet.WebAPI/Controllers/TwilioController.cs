@@ -3,6 +3,9 @@ using Twilio;
 using Twilio.TwiML;
 using System.Collections.Generic;
 using Twilio.TwiML.Messaging;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
+
 
 namespace Dotnet.WebAPI.Controllers;
 
@@ -38,6 +41,17 @@ public class TwilioController : ControllerBase
 
         _logger.LogDebug(response.ToString());
         Console.WriteLine();
+
+        
+        var accountSid = "";
+        var authToken = "";
+        TwilioClient.Init(accountSid, authToken);
+
+        var messageOptions = new CreateMessageOptions(
+        new PhoneNumber("whatsapp:+"));
+        messageOptions.From = new PhoneNumber("whatsapp:+");
+        messageOptions.Body = "Your appointment is coming up on July 21 at 3PM";
+        Console.WriteLine(MessageResource.Create(messageOptions).Body);
         return response.ToString();
     }
 }
