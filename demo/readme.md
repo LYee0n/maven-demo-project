@@ -16,4 +16,7 @@ java -jar target/demo-0.0.1-SNAPSHOT.jar  --spring.config.location=file:./applic
 
 java -jar target/demo-0.0.1-SNAPSHOT.jar  --spring.config.location=file:/workspaces/maven-demo-project/demo/application.properties
 
+docker build . -t jyasu/hello-spring-boot
+
+docker run -p 9000:9000 -e JAVA_OPTS=-Dserver.port=9000 jyasu/hello-spring-boot
 ```
