@@ -479,3 +479,17 @@ curl http://localhost:5134/Twilio -X POST \
 --data-urlencode 'To=whatsapp:+886912562697' \
 --data-urlencode 'From=whatsapp:+14155238886' \
 --data-urlencode 'Body=Your appointment is coming up on July 21 at 3PM'
+
+
+
+curl https://lyee0n-stunning-pancake-vxvjwgvj79vcpvjp-5134.preview.app.github.dev/Twilio -X POST \
+--data-urlencode 'To=whatsapp:+886912562697' \
+--data-urlencode 'From=whatsapp:+14155238886' \
+--data-urlencode 'Body=Your appointment is coming up on July 21 at 3PM'
+
+
+
+
+https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples/7.x/WebSocketsSample
+
+https://medium.com/swlh/creating-a-simple-real-time-chat-with-net-core-reactjs-and-signalr-6367dcadd2c6
