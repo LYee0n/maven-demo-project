@@ -9,6 +9,7 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
+import org.openjdk.jmh.profile.GCProfiler;
 
 import java.util.concurrent.TimeUnit;
 import java.io.FileInputStream;
@@ -21,9 +22,9 @@ import java.sql.*;
  */
 @BenchmarkMode(Mode.All)
 @Warmup(iterations = 3)
-@Measurement(iterations = 10, time = 5, timeUnit = TimeUnit.SECONDS)
-@Threads(8)
-@Fork(2)
+@Measurement(iterations = 3, time = 5, timeUnit = TimeUnit.SECONDS)
+@Threads(1)
+@Fork(1)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class AppTest 
 {
@@ -34,6 +35,7 @@ public class AppTest
     public void shouldAnswerWithTrue() throws RunnerException {
         Options options = new OptionsBuilder()
             .include(AppTest.class.getSimpleName())
+            .addProfiler(GCProfiler.class)
             .output("./Benchmark.log")
             .build();
         new Runner(options).run();
