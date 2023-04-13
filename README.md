@@ -493,3 +493,10 @@ curl https://lyee0n-stunning-pancake-vxvjwgvj79vcpvjp-5134.preview.app.github.de
 https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples/7.x/WebSocketsSample
 
 https://medium.com/swlh/creating-a-simple-real-time-chat-with-net-core-reactjs-and-signalr-6367dcadd2c6
+
+
+
+
+https://apisix.apache.org/
+
+https://velero.io/
