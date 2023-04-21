@@ -500,3 +500,6 @@ https://medium.com/swlh/creating-a-simple-real-time-chat-with-net-core-reactjs-a
 https://apisix.apache.org/
 
 https://velero.io/
+
+
+https://blog.miniasp.com/post/2023/04/21/Running-Keycloak-in-development-mode?full=1&fbclid=IwAR0QqkBgrFbPtRmh2-zGYg7ODP8PK47KHAQz4Bp8zk_AsU4FT-iIlhHpcTU
