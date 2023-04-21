@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: registry.gitlab.com/jyasuu/docker-demo:0-0-1
+          restartPolicy: OnFailure
+          imagePullSecrets:
+          - name: regcred
