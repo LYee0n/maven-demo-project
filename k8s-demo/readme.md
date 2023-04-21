@@ -31,6 +31,9 @@ kubectl get pods
 
 kubectl logs hello-28034660-ghhvl
 
+kubectl apply -f ./demo1.yml 
+
+kubectl exec --stdin --tty nginx-668cb599f4-lsqkc -- /bin/bash
 
 
 ```
