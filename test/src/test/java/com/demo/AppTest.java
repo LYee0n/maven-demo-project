@@ -16,6 +16,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.sql.*;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * Unit test for simple App.
@@ -28,17 +31,21 @@ import java.sql.*;
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class AppTest 
 {
+    private static final Logger logger = LogManager.getLogger(AppTest.class);
     /**
      * Rigorous Test :-)
      */
     @Test
     public void shouldAnswerWithTrue() throws RunnerException {
-        Options options = new OptionsBuilder()
-            .include(AppTest.class.getSimpleName())
-            .addProfiler(GCProfiler.class)
-            .output("./Benchmark.log")
-            .build();
-        new Runner(options).run();
+
+        logger.info(gelfMessage);
+
+        // Options options = new OptionsBuilder()
+        //     .include(AppTest.class.getSimpleName())
+        //     .addProfiler(GCProfiler.class)
+        //     .output("./Benchmark.log")
+        //     .build();
+        // new Runner(options).run();
         assertTrue( true );
     }
 
