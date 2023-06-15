@@ -1,0 +1,6 @@
+---
+roles:
+  - name: demo-ansible-role
+    src: https://gitlab.com/jyasuu/demo-ansible-role.git
+    version: main
+    scm: git

@@ -1,8 +1,11 @@
 ---
 - name: Process List of Patches 
   hosts: server
+  become: true
+  become_user: root
   roles:
     - common
+    - demo-ansible-role
   vars: 
     patch_list: []
     config:
