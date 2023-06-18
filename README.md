@@ -505,3 +505,10 @@ https://velero.io/
 https://blog.miniasp.com/post/2023/04/21/Running-Keycloak-in-development-mode?full=1&fbclid=IwAR0QqkBgrFbPtRmh2-zGYg7ODP8PK47KHAQz4Bp8zk_AsU4FT-iIlhHpcTU
 
 https://medium.com/geekculture/using-vault-agent-with-docker-compose-f410d033026f
+
+
+## vault ssh otp
+
+https://developer.hashicorp.com/vault/docs/secrets/ssh/one-time-ssh-passwords
+https://developer.hashicorp.com/vault/tutorials/secrets-management/ssh-otp
+https://zhuanlan.zhihu.com/p/370341939
