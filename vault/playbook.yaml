@@ -1,0 +1,143 @@
+---
+- name: Hashi Vault 
+  hosts: localhost
+  become: true
+  become_user: root
+  vars: 
+    token: hvs.OPvskH4NsPXuIMhmfYmxB0NN
+    VAULT_TOKEN: hvs.OPvskH4NsPXuIMhmfYmxB0NN
+
+  tasks:
+    - name: Print 
+      ansible.builtin.debug:
+        msg: "token {{ token }} "
+
+    - name: Read a kv2 secret from Vault via the remote host with userpass auth
+      community.hashi_vault.vault_read:
+        url: http://localhost:8200
+        path: secret/data/mysecret
+        auth_method: token
+        token: "{{ token }}"
+        # token_file: ".vault-token"
+        # auth_method: userpass
+        # username: user
+        # password: '{{ passwd }}'
+      register: secret
+
+    - name: Display the secret data
+      ansible.builtin.debug:
+        msg: 
+          - "Secret: {{ secret }}"
+          - "{{ secret.data.data.data.username }}"
+          - "{{ secret.data.data.data.password }}"
+        
+    - name: Write a value to the cubbyhole via the remote host with userpass auth
+      community.hashi_vault.vault_write:
+        url: http://localhost:8200
+        path: cubbyhole/mysecret2
+        auth_method: token
+        token: "{{ token }}"
+        data:
+          key1: val1
+          key2: val2
+      register: result
+
+    - name: Display the result of the write (this can be empty)
+      ansible.builtin.debug:
+        msg: "{{ result.data }}"
+
+    - name: Write/create a secret
+      community.hashi_vault.vault_kv2_write:
+        url: http://localhost:8200
+        path: hello
+        auth_method: token
+        token: "{{ token }}"
+        data:
+          foo: bar---------------
+      register: result
+
+    - name: Display the result of the write (this can be empty)
+      ansible.builtin.debug:
+        msg: "{{ result }}"
+
+    - name: Read the latest version of a kv2 secret from Vault via the remote host with userpass auth
+      community.hashi_vault.vault_kv2_get:
+        url: http://localhost:8200
+        auth_method: token
+        token: "{{ token }}"
+        path: hello
+      register: response
+      # equivalent API path is secret/data/hello
+
+    - name: Display the results
+      ansible.builtin.debug:
+        msg:
+          - "Secret: {{ response }}"
+          - "Secret: {{ response.data.data.foo }}"
+
+    - name: List kv2 secrets from Vault via the remote host with userpass auth
+      community.hashi_vault.vault_list:
+        url: http://localhost:8200
+        auth_method: token
+        token: "{{ token }}"
+        path: secret/metadata
+        # For kv2, the path needs to follow the pattern 'mount_point/metadata' or 'mount_point/metadata/path' to list all secrets in that path
+      register: secret
+
+    - name: Display the secrets found at the path provided above
+      ansible.builtin.debug:
+        msg: "{{ secret.data.data['keys'] }}"
+        # Note that secret.data.data.keys won't work as 'keys' is a built-in method
+
+    - name: Login via userpass and create a child token
+      community.hashi_vault.vault_token_create:
+        url: http://localhost:8200
+        auth_method: token
+        token: "{{ token }}"
+      register: token_data
+
+    - name: Display the secrets found at the path provided above
+      ansible.builtin.debug:
+        msg: "{{ token_data }}"
+
+    - name: Retrieve an approle role ID using the child token (token via filter)
+      community.hashi_vault.vault_read:
+        url: http://localhost:8200
+        auth_method: token
+        token: '{{ token_data | community.hashi_vault.vault_login_token }}'
+        path: secret/data/mysecret
+      register: approle_id
+
+    - name: Display the secrets found at the path provided above
+      ansible.builtin.debug:
+        msg: "{{ approle_id }}"
+
+    - name: Retrieve an approle role ID using the child token (token via direct dict access)
+      community.hashi_vault.vault_read:
+        url: http://localhost:8200
+        auth_method: token
+        token: '{{ token_data.login.auth.client_token }}'
+        path: secret/data/mysecret
+      register: approle_id
+
+    - name: Display the secrets found at the path provided above
+      ansible.builtin.debug:
+        msg: "{{ approle_id }}"
+
+    # implicitly uses token auth with a token from the environment
+    - name: Create an orphaned token with a short TTL
+      community.hashi_vault.vault_token_create:
+        url: http://localhost:8200
+        auth_method: token
+        token: "{{ token }}"
+        orphan: true
+        ttl: 60s
+      register: token_data
+
+    - name: Display the secrets found at the path provided above
+      ansible.builtin.debug:
+        msg: "{{ token_data }}"
+
+    - name: Display the full response
+      ansible.builtin.debug:
+        var: token_data.login

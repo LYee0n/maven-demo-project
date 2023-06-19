@@ -114,6 +114,8 @@ ansible-vault edit vault
 
 ansible-playbook  site.yml
 
+ansible-galaxy install -r requirements.yml --force
+
  ansible-playbook playbook.yaml -i inventories/production/hosts --vault-password-file .vault_passwd
 
  ansible-playbook playbook.yaml -i inventories/test/hosts --vault-password-file .vault_passwd
