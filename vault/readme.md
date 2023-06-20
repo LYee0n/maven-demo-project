@@ -23,4 +23,26 @@ curl \
 read secret/data/mysecret
 
 ansible-playbook playbook.yaml
+
+
+docker compose exec vault sh
+
+export VAULT_TOKEN=hvs.oChRuGDiXOLX37MXIvvqiGB2
+
+vault secrets enable ssh
+
+vi a.json
+{
+  "key_type": "otp",
+  "default_user": "default",
+  "cidr_list": "0.0.0.0/0",
+  "port": 22,
+  "key": "rsa",
+  "ttl": "1h",
+  "max_ttl": "24h"
+}
+
+vault write ssh/roles/otp_role @a.json
+
+
 ```

@@ -8,6 +8,56 @@
     VAULT_TOKEN: hvs.OPvskH4NsPXuIMhmfYmxB0NN
 
   tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - unzip
+          - jq
+        state: present
+        update_cache: yes
+      become: true
+
+    - name: Download Vault-SSH-Helper binary
+      get_url:
+        url: "https://releases.hashicorp.com/vault-ssh-helper/0.2.0/vault-ssh-helper_0.2.0_linux_amd64.zip"
+        dest: "/tmp/vault-ssh-helper.zip"
+        mode: 0644
+
+    - name: Extract Vault-SSH-Helper binary
+      unarchive:
+        src: "/tmp/vault-ssh-helper.zip"
+        dest: "/usr/local/bin"
+        remote_src: true
+        extra_opts: "--strip-components=1"
+      become: true
+
+    - name: Create Vault-SSH-Helper configuration directory
+      file:
+        path: "/etc/vault-ssh-helper.d"
+        state: directory
+        mode: 0755
+      become: true
+
+    - name: Create Vault-SSH-Helper configuration file
+      copy:
+        content: |
+          vault_addr = "http://localhost:8200"
+          ssh_mount_point = "ssh"
+          allowed_roles = "otp_role"
+        dest: "/etc/vault-ssh-helper.d/config.hcl"
+        mode: 0644
+      become: true
+
+    - name: Modify SSH server configuration
+      lineinfile:
+        path: "/etc/ssh/sshd_config"
+        line: |
+          AuthorizedPrincipalsCommand /usr/local/bin/vault-ssh-helper -verify-only -config=/etc/vault-ssh-helper.d/config.hcl
+          AuthorizedPrincipalsCommandUser vault-ssh-helper
+      notify:
+        - Restart SSH service
+      become: true
+
     - name: Print 
       ansible.builtin.debug:
         msg: "token {{ token }} "
@@ -141,3 +191,12 @@
     - name: Display the full response
       ansible.builtin.debug:
         var: token_data.login
+
+
+        
+  handlers:
+    - name: Restart SSH service
+      service:
+        name: sshd
+        state: restarted
+        
